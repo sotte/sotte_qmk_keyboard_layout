@@ -1,0 +1,13 @@
+# Junk files
+*.bak
+*.swp
+*~
+.DS_Store
+._*
+
+# Firmware files
+*.hex
+*.bin
+*.uf2
+
+/.venv/
