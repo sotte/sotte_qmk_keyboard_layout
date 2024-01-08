@@ -17,7 +17,7 @@ I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-c
 <!-- REPLACE_MARKER_START -->
 ### Symbols legend
 
-```
+```text
 ■ pressed thumb key
 • noop
 ↵ enter
@@ -29,16 +29,16 @@ I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-c
 ←↑↓→ arrows
 ⌘⌥⌃⇧ gui/alt/ctrl/shift also GACS
 ␣ space
-␛ ESC
+ES ESC
 Cc Ctrl+c, Cv Ctrl+v
 ♦1 special feature 1; explained in the doc
 ```
 
 ### Thumb cluster and layers
 
-I actually only use middle and inner thumb keys.
+I actually only use middle and inner thumb keys of the thumb cluster.
 
-```
+```text
 NAV: ...  .■.
 SYM: .■.  ...
 NUM: .■.  .■.
@@ -46,10 +46,10 @@ NUM: .■.  .■.
 
 ### ALPHA layer
 
-```
-␛  qQ wW fF pP gG       jJ lL uU yY :; ♦1
+```text
+ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
 ⌃  aA rR sS tT dD       hH nN eE iI oO ♦2
-♦⇧ zZ xX cC vV bB       kK mM ,! .? _- •
+♦⇧ zZ xX cC vV bB       kK mM ,? .! _- •
             •  ␣  ␛  ⇧  ⌫  •
 ```
 
@@ -63,8 +63,8 @@ But it contains different non-alpha characters and different shifted versions.
 
 ### NAV layer
 
-```
-␛  Cq Cw •  •  •        ↥  ⇤  ↑  ⇥  ⌦ ♦1
+```text
+ES Cq Cw Cf  •  •        ↥  ⇤  ↑  ⇥  ⌦ ♦1
 ⌃  G  A  C  S  Cd       ⌦  ←  ↓  →  ⌫ ♦2
 ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  •  • •
             •  ■  •  ⌫  •  •
@@ -83,8 +83,8 @@ TODO: WIP cut, copy, paste are on the left side. make this work in terminals too
 
 ### NUM layer
 
-```
-␛  ~  -  +  9  •        •  8  *  /  : ♦1
+```text
+ES ~  -  +  9  •        •  8  *  /  : ♦1
 ⌃  7  5  3  1  =        •  0  2  4  6 ♦2
 ⇧  •  {  [  (  <        >  )  ]  }  _ •
             •  ■  •  •  ■  •
@@ -110,8 +110,8 @@ TODO: what should I do with the empyt keys?
 
 ### SYMBOL layer
 
-```
-␛  ~  -  +  \  |        `  `  *  /  : ♦1
+```text
+ES ~  -  +  \  |        `  `  *  /  : ♦1
 ⌃  &  %  #  !  =        '  "  @  $  ^ ♦2
 ⇧  •  {  [  (  <        >  )  ]  }  _ •
             •  •  •  ■  •  •

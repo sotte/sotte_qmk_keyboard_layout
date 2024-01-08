@@ -86,7 +86,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 
 /// ### Symbols legend
 ///
-/// ```
+/// ```text
 /// ■ pressed thumb key
 /// • noop
 /// ↵ enter
@@ -98,7 +98,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 /// ←↑↓→ arrows
 /// ⌘⌥⌃⇧ gui/alt/ctrl/shift also GACS
 /// ␣ space
-/// ␛ ESC
+/// ES ESC
 /// Cc Ctrl+c, Cv Ctrl+v
 /// ♦1 special feature 1; explained in the doc
 /// ```
@@ -108,9 +108,9 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### Thumb cluster and layers
   ///
-  /// I actually only use middle and inner thumb keys.
+  /// I actually only use middle and inner thumb keys of the thumb cluster.
   ///
-  /// ```
+  /// ```text
   /// NAV: ...  .■.
   /// SYM: .■.  ...
   /// NUM: .■.  .■.
@@ -118,8 +118,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// ### ALPHA layer
   ///
-  /// ```
-  /// ␛  qQ wW fF pP gG       jJ lL uU yY :; ♦1
+  /// ```text
+  /// ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
   /// ⌃  aA rR sS tT dD       hH nN eE iI oO ♦2
   /// ♦⇧ zZ xX cC vV bB       kK mM ,! .? _- •
   ///             •  ␣  ␛  ⇧  ⌫  •
@@ -141,8 +141,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// ### NAV layer
   ///
-  /// ```
-  /// ␛  Cq Cw •  •  •        ↥  ⇤  ↑  ⇥  ⌦ ♦1
+  /// ```text
+  /// ES Cq Cw Cf  •  •        ↥  ⇤  ↑  ⇥  ⌦ ♦1
   /// ⌃  G  A  C  S  Cd       ⌦  ←  ↓  →  ⌫ ♦2
   /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  •  • •
   ///             •  ■  •  ⌫  •  •
@@ -167,8 +167,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// ### NUM layer
   ///
-  /// ```
-  /// ␛  ~  -  +  9  •        •  8  *  /  : ♦1
+  /// ```text
+  /// ES ~  -  +  9  •        •  8  *  /  : ♦1
   /// ⌃  7  5  3  1  =        •  0  2  4  6 ♦2
   /// ⇧  •  {  [  (  <        >  )  ]  }  _ •
   ///             •  ■  •  •  ■  •
@@ -200,8 +200,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// ### SYMBOL layer
   ///
-  /// ```
-  /// ␛  ~  -  +  \  |        `  `  *  /  : ♦1
+  /// ```text
+  /// ES ~  -  +  \  |        `  `  *  /  : ♦1
   /// ⌃  &  %  #  !  =        '  "  @  $  ^ ♦2
   /// ⇧  •  {  [  (  <        >  )  ]  }  _ •
   ///             •  •  •  ■  •  •
@@ -221,7 +221,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ### WIP layers
   //
   // ### WIP ALT SYMBOL layer
-  // ```
+  // ```text
   // ~  `  '  "  !        .  .  .  .  :
   // \  {  [  (  [        .  S  C  A  G
   // |  }  ]  )  ]        .  #  <  >  _
@@ -237,7 +237,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ),
   //
   // ### WIP ALT NUM layer
-  // ```
+  // ```text
   // 0  7& 8* 9( +        .  .  .  .  :
   // 0  4$ 5% 6^ -        .  S  C  A  G
   // 0  1! 2@ 3# *        .  .  ,  .  _
@@ -252,7 +252,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ),
   //
   // ### WIP ALT MOUSE layer
-  // ```
+  // ```text
   // .  .  .  .  .        ↥  ⇤  ↑  ⇥  .
   // G  A  C  S  .        ↧  ←  ↓  →  .
   // .  .  .  .  .        .  .  .  .  .
@@ -273,7 +273,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ),
   //
   // ### WIP ALT FUNC layer
-  // ```
+  // ```text
   // . F7 F8 F9 F12      .  .  .  .  :
   // . F4 F5 F6 F11      .  S  C  A  G
   // . F1 F2 F3 F10      .  .  ,  .  _
