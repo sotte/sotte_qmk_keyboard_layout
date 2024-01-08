@@ -48,17 +48,18 @@ enum layer_names {
 // MO(NAV_L),   A_MTG,   R_MTA,   S_MTC,   T_MTS,    KC_D,                         KC_H,   N_MTS,   E_MTC,   I_MTA,   O_MTG, KC_QUOT,
 
 
-// shortcuts
+// aliases - mostly to keep the format/style consistent
 #define OSM_SFT OSM(MOD_LSFT)
 #define OSM_CTL OSM(MOD_LCTL)
 #define OSM_GUI OSM(MOD_LGUI)
 #define OSM_ALT OSM(MOD_LALT)
 #define CTRL_C  LCTL(KC_C)
 #define CTRL_D  LCTL(KC_D)
-#define CTRL_V  LCTL(KC_V)
+#define CTRL_F  LCTL(KC_F)
 #define CTRL_Q  LCTL(KC_Q)
-#define CTRL_W  LCTL(KC_W)
 #define CTRL_T  LCTL(KC_T)
+#define CTRL_V  LCTL(KC_V)
+#define CTRL_W  LCTL(KC_W)
 
 // Layer tabs
 #define BSP_SYM  LT(SYM_L, KC_BSPC)
@@ -75,8 +76,8 @@ enum layer_names {
 
 // custom shift keys
 const custom_shift_key_t custom_shift_keys[] = {
-  {KC_COMM, KC_EXLM}, // Shift , is !
-  {KC_DOT , KC_QUES}, // Shift . is ?
+  {KC_COMM, KC_QUES}, // Shift , is ?
+  {KC_DOT , KC_EXLM}, // Shift . is !
   {KC_UNDS, KC_MINS}, // Shift _ is -
   {KC_COLN, KC_SCLN}, // Shift : is ;
   // {KC_MINS, KC_EQL }, // Shift - is =
@@ -121,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ```text
   /// ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
   /// ⌃  aA rR sS tT dD       hH nN eE iI oO ♦2
-  /// ♦⇧ zZ xX cC vV bB       kK mM ,! .? _- •
+  /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- •
   ///             •  ␣  ␛  ⇧  ⌫  •
   /// ```
   ///
@@ -159,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ♦1: Switch to ALPHA layer.
   /// ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
   [NAV_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  CTRL_Q,  CTRL_W, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME,   KC_UP,  KC_END,  KC_DEL, TO(ALPHA_L),
+       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME,   KC_UP,  KC_END,  KC_DEL, TO(ALPHA_L),
       KC_LCTL, OSM_GUI, OSM_ALT, OSM_CTL, OSM_SFT,  CTRL_D,                       KC_DEL, KC_LEFT, KC_DOWN,KC_RIGHT, KC_BSPC, TO(NAV_L),
       KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, XXXXXXX,
                                           _______, _______, XXXXXXX,    KC_BSPC,MO(NUM_L),XXXXXXX
