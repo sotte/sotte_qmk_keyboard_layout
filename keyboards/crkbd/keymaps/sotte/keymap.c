@@ -123,16 +123,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
   /// ⌃  aA rR sS tT dD       hH nN eE iI oO ♦2
   /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- •
-  ///             •  ␣  ␛  ⇧  ⌫  •
+  ///             •  ␣  ␛  ♦⇧ ⌫  •
   /// ```
   ///
-  /// This is a colemak layout.
-  /// But it contains different non-alpha characters and different shifted versions.
-  /// `.,_;!?` are quite common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies)).
+  /// This is a almost standard colemak layout.
+  /// It contains different non-alpha characters (and different shifted versions)
+  /// as they are quite common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies)):
+  /// `,?`, `.!`, `_-`, and `:;`.
   ///
-  /// ♦1: Switch to ALPHA layer.
-  /// ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
-  /// ♦⇧: One-shot shift
+  /// Legend:
+  ///
+  /// - ♦1: Switch to ALPHA layer.
+  /// - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
+  /// - ♦⇧: One-shot shift
   [ALPHA_L] = LAYOUT_split_3x6_3(
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, TO(ALPHA_L),
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, TO(NAV_L),
@@ -143,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### NAV layer
   ///
   /// ```text
-  /// ES Cq Cw Cf  •  •        ↥  ⇤  ↑  ⇥  ⌦ ♦1
+  /// ES Cq Cw Cf •  •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
   /// ⌃  G  A  C  S  Cd       ⌦  ←  ↓  →  ⌫ ♦2
   /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  •  • •
   ///             •  ■  •  ⌫  •  •
@@ -155,13 +158,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// and delete behavior.
   /// GACS are one-shot keys and can be used on other layers as well.
   ///
-  /// TODO: WIP cut, copy, paste are on the left side. make this work in terminals too.
+  /// Legend:
   ///
-  /// ♦1: Switch to ALPHA layer.
-  /// ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
+  /// - ♦1: Switch to ALPHA layer.
+  /// - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
   [NAV_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME,   KC_UP,  KC_END,  KC_DEL, TO(ALPHA_L),
-      KC_LCTL, OSM_GUI, OSM_ALT, OSM_CTL, OSM_SFT,  CTRL_D,                       KC_DEL, KC_LEFT, KC_DOWN,KC_RIGHT, KC_BSPC, TO(NAV_L),
+       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, TO(ALPHA_L),
+      KC_LCTL, OSM_GUI, OSM_ALT, OSM_CTL, OSM_SFT,  CTRL_D,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, TO(NAV_L),
       KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, XXXXXXX,
                                           _______, _______, XXXXXXX,    KC_BSPC,MO(NUM_L),XXXXXXX
   ),

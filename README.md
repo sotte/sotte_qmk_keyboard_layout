@@ -50,21 +50,24 @@ NUM: .■.  .■.
 ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
 ⌃  aA rR sS tT dD       hH nN eE iI oO ♦2
 ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- •
-            •  ␣  ␛  ⇧  ⌫  •
+            •  ␣  ␛  ♦⇧ ⌫  •
 ```
 
-This is a colemak layout.
-But it contains different non-alpha characters and different shifted versions.
-`.,_;!?` are quite common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies)).
+This is a almost standard colemak layout.
+It contains different non-alpha characters (and different shifted versions)
+as they are quite common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies)):
+`,?`, `.!`, `_-`, and `:;`.
 
-♦1: Switch to ALPHA layer.
-♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
-♦⇧: One-shot shift
+Legend:
+
+- ♦1: Switch to ALPHA layer.
+- ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
+- ♦⇧: One-shot shift
 
 ### NAV layer
 
 ```text
-ES Cq Cw Cf  •  •        ↥  ⇤  ↑  ⇥  ⌦ ♦1
+ES Cq Cw Cf •  •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
 ⌃  G  A  C  S  Cd       ⌦  ←  ↓  →  ⌫ ♦2
 ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  •  • •
             •  ■  •  ⌫  •  •
@@ -76,10 +79,10 @@ Note: you can use GACS on the left side to create complex arrow movements/select
 and delete behavior.
 GACS are one-shot keys and can be used on other layers as well.
 
-TODO: WIP cut, copy, paste are on the left side. make this work in terminals too.
+Legend:
 
-♦1: Switch to ALPHA layer.
-♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
+- ♦1: Switch to ALPHA layer.
+- ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
 
 ### NUM layer
 
