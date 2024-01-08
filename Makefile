@@ -3,6 +3,9 @@
 MAKEFLAGS += --no-print-directory
 
 
+README.md: keyboards/crkbd/keymaps/sotte/keymap.c
+	./bin/update_readme.py
+
 .PHONY: compile
 compile: README.md
 	make crkbd:sotte
@@ -10,9 +13,6 @@ compile: README.md
 .PHONY: flash
 flash: README.md
 	make crkbd:sotte:flash
-
-README.md: keyboards/crkbd/keymaps/sotte/keymap.c
-	./bin/update_readme.py
 
 
 QMK_USERSPACE := $(patsubst %/,%,$(dir $(shell realpath "$(lastword $(MAKEFILE_LIST))")))
