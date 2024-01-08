@@ -218,6 +218,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT, XXXXXXX, KC_LCBR, KC_LBRC, KC_LPRN, KC_LABK,                      KC_RABK, KC_RPRN, KC_RBRC, KC_RCBR, KC_UNDS, XXXXXXX,
                                           XXXXXXX,MO(NUM_L), XXXXXXX,  _______, _______, XXXXXXX
   ),
+  ///
+  /// ### SYMBOL layer
+  ///
+  /// ```text
+  /// ES ^  /  *  $  |        \  '  [  ]  : •
+  /// ⌃  !  -  +  =  ~        #  "  (  )  • •
+  /// ⇧  •  <  >  %  &        @  `  {  }  _ •
+  ///             •  •  •  ■  •  •
+  /// ```
+  ///
+  /// Inspired by getreuer:
+  /// https://getreuer.info/posts/keyboards/symbol-layer/index.html
+  ///
+  [SYM_L] = LAYOUT_split_3x6_3(
+       KC_ESC, KC_CIRC, KC_SLSH, KC_ASTR, KC_DLR , KC_PIPE,                     KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, XXXXXXX,
+      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                     KC_HASH,  KC_DQT, KC_LPRN, KC_RPRN, XXXXXXX, XXXXXXX,
+      KC_LSFT, XXXXXXX, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                       KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, XXXXXXX,
+                                          XXXXXXX,MO(NUM_L), XXXXXXX,  _______, _______, XXXXXXX
+  ),
   // ==============================================
   // ### WIP layers
   //

@@ -121,6 +121,19 @@ Like the NUM layer, but the SYM layer
 
 - contains the symbols of the shifted numbers,
 - contains the rest of the symbols.
+
+### SYMBOL layer
+
+```text
+ES ^  /  *  $  |        \  '  [  ]  : •
+⌃  !  -  +  =  ~        #  "  (  )  • •
+⇧  •  <  >  %  &        @  `  {  }  _ •
+            •  •  •  ■  •  •
+```
+
+Inspired by getreuer:
+https://getreuer.info/posts/keyboards/symbol-layer/index.html
+
 <!-- REPLACE_MARKER_END -->
 
 ## Usage
