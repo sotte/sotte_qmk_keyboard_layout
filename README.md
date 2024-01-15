@@ -86,6 +86,8 @@ Legend:
 
 ### NUM layer
 
+NOTE: WIP this symbol layer is being oberwritten by the next symbol layer.
+
 ```text
 ES ~  -  +  9  •        •  8  *  /  : ♦1
 ⌃  7  5  3  1  =        •  0  2  4  6 ♦2
@@ -110,6 +112,20 @@ Opening on the left, closing on the right.
 Some useful keys from the alpha layer bleed through: `:_`
 
 TODO: what should I do with the empyt keys?
+
+### NUM layer
+
+```text
+ES •  /  *  #  |        .  7  8  9  : •
+⌃  !  -  +  =  ~        0  4  5  6  0 •
+⇧  •  <  >  %  &        ,  1  2  3  _ •
+            •  •  ■  (  )  •
+```
+
+The right side is the real NUM layer.
+The left side is the symbol layer really,
+but is should making working with the num layer comfortable.
+
 
 ### SYMBOL layer
 
