@@ -113,6 +113,8 @@ TODO: what should I do with the empyt keys?
 
 ### SYMBOL layer
 
+NOTE: WIP this symbol layer is being oberwritten by the next symbol layer.
+
 ```text
 ES ~  -  +  \  |        `  `  *  /  : ♦1
 ⌃  &  %  #  !  =        '  "  @  $  ^ ♦2
@@ -128,8 +130,8 @@ Like the NUM layer, but the SYM layer
 ### SYMBOL layer
 
 ```text
-ES ^  /  *  $  |        \  '  [  ]  : •
-⌃  !  -  +  =  ~        #  "  (  )  • •
+ES •  /  *  #  |        \  '  [  ]  : •
+⌃  !  -  +  =  ~        ^  "  (  )  $ •
 ⇧  •  <  >  %  &        @  `  {  }  _ •
             •  •  •  ■  •  •
 ```
