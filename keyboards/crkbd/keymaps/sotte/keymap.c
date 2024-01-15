@@ -147,10 +147,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### NAV layer
   ///
   /// ```text
-  /// ES Cq Cw Cf •  •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
-  /// ⌃  G  A  C  S  Cd       ⌦  ←  ↓  →  ⌫ ♦2
+  /// ES Cq Cw Cf ♦3 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
+  /// ⌃  G  A  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦2
   /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  •  • •
-  ///             •  ■  •  ⌫  •  •
+  ///             •  ■  •  ⌦  ⌫  •
   /// ```
   ///
   /// A fairly simple nav layer.
@@ -163,11 +163,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// - ♦1: Switch to ALPHA layer.
   /// - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
+  /// - ♦3: Print screen
   [NAV_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, TO(ALPHA_L),
+       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F, KC_PSCR, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, TO(ALPHA_L),
       KC_LCTL, OSM_GUI, OSM_ALT, OSM_CTL, OSM_SFT,  CTRL_D,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, TO(NAV_L),
       KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, XXXXXXX,
-                                          _______, _______, XXXXXXX,    KC_BSPC,MO(NUM_L),XXXXXXX
+                                          _______, _______, XXXXXXX,     KC_DEL, KC_BSPC, XXXXXXX
   ),
   ///
   /// ### NUM layer

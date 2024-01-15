@@ -67,10 +67,10 @@ Legend:
 ### NAV layer
 
 ```text
-ES Cq Cw Cf •  •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
-⌃  G  A  C  S  Cd       ⌦  ←  ↓  →  ⌫ ♦2
+ES Cq Cw Cf ♦3 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
+⌃  G  A  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦2
 ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  •  • •
-            •  ■  •  ⌫  •  •
+            •  ■  •  ⌦  ⌫  •
 ```
 
 A fairly simple nav layer.
@@ -83,6 +83,7 @@ Legend:
 
 - ♦1: Switch to ALPHA layer.
 - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
+- ♦3: Print screen
 
 ### NUM layer
 
