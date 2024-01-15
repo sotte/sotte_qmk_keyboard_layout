@@ -122,8 +122,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// ```text
   /// ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
-  /// ⌃  aA rR sS tT dD       hH nN eE iI oO ♦2
-  /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- •
+  /// ⌃  aA rR sS tT dD       hH nN eE iI oO ♦3
+  /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦2
   ///             •  ␣  ␛  ♦⇧ ⌫  •
   /// ```
   ///
@@ -136,20 +136,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// - ♦1: Switch to ALPHA layer.
   /// - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
+  /// - ♦3: Repeat last key (combo)
   /// - ♦⇧: One-shot shift
   [ALPHA_L] = LAYOUT_split_3x6_3(
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, TO(ALPHA_L),
-      KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, TO(NAV_L),
-      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, XXXXXXX,
+      KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, QK_REP,
+      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, TO(NAV_L),
                                           XXXXXXX, SPC_NAV, ESC_NUM,    OSM_SFT, BSP_SYM, XXXXXXX
   ),
   ///
   /// ### NAV layer
   ///
   /// ```text
-  /// ES Cq Cw Cf ♦3 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
-  /// ⌃  G  A  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦2
-  /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  •  • •
+  /// ES Cq Cw Cf ♦0 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
+  /// ⌃  G  A  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦3
+  /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦2
   ///             •  ■  •  ⌦  ⌫  •
   /// ```
   ///
@@ -163,11 +164,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// - ♦1: Switch to ALPHA layer.
   /// - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
-  /// - ♦3: Print screen
+  /// - ♦3: Repeat last key (combo)
+  /// - ♦4: Print screen
   [NAV_L] = LAYOUT_split_3x6_3(
        KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F, KC_PSCR, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, TO(ALPHA_L),
-      KC_LCTL, OSM_GUI, OSM_ALT, OSM_CTL, OSM_SFT,  CTRL_D,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, TO(NAV_L),
-      KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, XXXXXXX,
+      KC_LCTL, OSM_GUI, OSM_ALT, OSM_CTL, OSM_SFT,  CTRL_D,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, QK_REP,
+      KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, TO(NAV_L),
                                           _______, _______, XXXXXXX,     KC_DEL, KC_BSPC, XXXXXXX
   ),
   ///

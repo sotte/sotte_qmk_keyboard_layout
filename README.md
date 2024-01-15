@@ -48,8 +48,8 @@ NUM: .■.  .■.
 
 ```text
 ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
-⌃  aA rR sS tT dD       hH nN eE iI oO ♦2
-♦⇧ zZ xX cC vV bB       kK mM ,? .! _- •
+⌃  aA rR sS tT dD       hH nN eE iI oO ♦3
+♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦2
             •  ␣  ␛  ♦⇧ ⌫  •
 ```
 
@@ -62,14 +62,15 @@ Legend:
 
 - ♦1: Switch to ALPHA layer.
 - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
+- ♦3: Repeat last key (combo)
 - ♦⇧: One-shot shift
 
 ### NAV layer
 
 ```text
-ES Cq Cw Cf ♦3 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
-⌃  G  A  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦2
-⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  •  • •
+ES Cq Cw Cf ♦0 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
+⌃  G  A  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦3
+⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦2
             •  ■  •  ⌦  ⌫  •
 ```
 
@@ -83,7 +84,8 @@ Legend:
 
 - ♦1: Switch to ALPHA layer.
 - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
-- ♦3: Print screen
+- ♦3: Repeat last key (combo)
+- ♦4: Print screen
 
 ### NUM layer
 
