@@ -98,7 +98,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 /// ↥↧ page up/down
 /// ⇤⇥ home/end
 /// ←↑↓→ arrows
-/// ⌘⌥⌃⇧ gui/alt/ctrl/shift also GACS
+/// ⌥⌘⇧⌃ alt/gui/shift/ctrl also AGSC
 /// ␣ space
 /// ES ESC
 /// Cc Ctrl+c, Cv Ctrl+v
@@ -149,16 +149,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// ```text
   /// ES Cq Cw Cf ♦0 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
-  /// ⌃  G  A  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦3
+  /// ⌃  A  G  S  C  Cd       ⇤  ←  ↓  →  ⇥ ♦3
   /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦2
   ///             •  ■  •  ⌦  ⌫  •
   /// ```
   ///
   /// A fairly simple nav layer.
   ///
-  /// Note: you can use GACS on the left side to create complex arrow movements/selections
+  /// Note: you can use AGSC on the left side to create complex arrow movements/selections
   /// and delete behavior.
-  /// GACS are one-shot keys and can be used on other layers as well.
+  /// AGSC are one-shot keys and can be used on other layers as well.
   ///
   /// Legend:
   ///
@@ -168,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - ♦4: Print screen
   [NAV_L] = LAYOUT_split_3x6_3(
        KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F, KC_PSCR, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, TO(ALPHA_L),
-      KC_LCTL, OSM_GUI, OSM_ALT, OSM_CTL, OSM_SFT,  CTRL_D,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, QK_REP,
+      KC_LCTL, OSM_ALT, OSM_GUI, OSM_SFT, OSM_CTL,  CTRL_D,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, QK_REP,
       KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, TO(NAV_L),
                                           _______, _______, XXXXXXX,     KC_DEL, KC_BSPC, XXXXXXX
   ),

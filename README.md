@@ -27,7 +27,7 @@ I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-c
 ↥↧ page up/down
 ⇤⇥ home/end
 ←↑↓→ arrows
-⌘⌥⌃⇧ gui/alt/ctrl/shift also GACS
+⌥⌘⇧⌃ alt/gui/shift/ctrl also AGSC
 ␣ space
 ES ESC
 Cc Ctrl+c, Cv Ctrl+v
@@ -69,16 +69,16 @@ Legend:
 
 ```text
 ES Cq Cw Cf ♦0 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
-⌃  G  A  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦3
+⌃  A  G  S  C  Cd       ⇤  ←  ↓  →  ⇥ ♦3
 ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦2
             •  ■  •  ⌦  ⌫  •
 ```
 
 A fairly simple nav layer.
 
-Note: you can use GACS on the left side to create complex arrow movements/selections
+Note: you can use AGSC on the left side to create complex arrow movements/selections
 and delete behavior.
-GACS are one-shot keys and can be used on other layers as well.
+AGSC are one-shot keys and can be used on other layers as well.
 
 Legend:
 
