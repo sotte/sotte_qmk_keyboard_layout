@@ -138,7 +138,7 @@ NOTE: WIP this symbol layer is being oberwritten by the next symbol layer.
 ES ~  -  +  \  |        `  `  *  /  : ♦1
 ⌃  &  %  #  !  =        '  "  @  $  ^ ♦2
 ⇧  •  {  [  (  <        >  )  ]  }  _ •
-            •  •  •  ■  •  •
+            •  ␣  •  ■  •  •
 ```
 
 Like the NUM layer, but the SYM layer
@@ -152,7 +152,7 @@ Like the NUM layer, but the SYM layer
 ES •  /  *  #  |        \  '  [  ]  : •
 ⌃  !  -  +  =  ~        ^  "  (  )  $ •
 ⇧  •  <  >  %  &        @  `  {  }  _ •
-            •  •  •  ■  •  •
+            •  ␣  •  ■  •  •
 ```
 
 Inspired by getreuer:

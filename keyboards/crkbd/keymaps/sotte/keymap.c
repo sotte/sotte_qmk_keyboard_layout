@@ -236,7 +236,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES ~  -  +  \  |        `  `  *  /  : ♦1
   /// ⌃  &  %  #  !  =        '  "  @  $  ^ ♦2
   /// ⇧  •  {  [  (  <        >  )  ]  }  _ •
-  ///             •  •  •  ■  •  •
+  ///             •  ␣  •  ■  •  •
   /// ```
   ///
   /// Like the NUM layer, but the SYM layer
@@ -244,10 +244,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - contains the symbols of the shifted numbers,
   /// - contains the rest of the symbols.
   [SYM_L] = LAYOUT_split_3x6_3(
-       KC_ESC, KC_TILD, KC_MINS, KC_PLUS, KC_BSLS, KC_PIPE,                       KC_GRV,  KC_GRV, KC_ASTR, KC_SLSH, KC_COLN, XXXXXXX,
-      KC_LCTL, KC_AMPR, KC_PERC, KC_HASH, KC_EXLM,  KC_EQL,                      KC_QUOT,  KC_DQT,   KC_AT,  KC_DLR, KC_CIRC, XXXXXXX,
-      KC_LSFT, XXXXXXX, KC_LCBR, KC_LBRC, KC_LPRN, KC_LABK,                      KC_RABK, KC_RPRN, KC_RBRC, KC_RCBR, KC_UNDS, XXXXXXX,
-                                          XXXXXXX,MO(NUM_L), XXXXXXX,  _______, _______, XXXXXXX
+       KC_ESC, KC_TILD, KC_MINS, KC_PLUS, KC_BSLS, KC_PIPE,                     KC_GRV,  KC_GRV, KC_ASTR, KC_SLSH, KC_COLN, XXXXXXX,
+      KC_LCTL, KC_AMPR, KC_PERC, KC_HASH, KC_EXLM,  KC_EQL,                    KC_QUOT,  KC_DQT,   KC_AT,  KC_DLR, KC_CIRC, XXXXXXX,
+      KC_LSFT, XXXXXXX, KC_LCBR, KC_LBRC, KC_LPRN, KC_LABK,                    KC_RABK, KC_RPRN, KC_RBRC, KC_RCBR, KC_UNDS, XXXXXXX,
+                                          XXXXXXX,  KC_SPC, XXXXXXX,  _______, _______, XXXXXXX
   ),
   ///
   /// ### SYMBOL layer
@@ -256,17 +256,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES •  /  *  #  |        \  '  [  ]  : •
   /// ⌃  !  -  +  =  ~        ^  "  (  )  $ •
   /// ⇧  •  <  >  %  &        @  `  {  }  _ •
-  ///             •  •  •  ■  •  •
+  ///             •  ␣  •  ■  •  •
   /// ```
   ///
   /// Inspired by getreuer:
   /// https://getreuer.info/posts/keyboards/symbol-layer/index.html
   ///
   [SYM_L] = LAYOUT_split_3x6_3(
-       KC_ESC, XXXXXXX, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                     KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, XXXXXXX,
-      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                     KC_CIRC,  KC_DQT, KC_LPRN, KC_RPRN,  KC_DLR, XXXXXXX,
-      KC_LSFT, XXXXXXX, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                       KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, XXXXXXX,
-                                          XXXXXXX,MO(NUM_L), XXXXXXX,  _______, _______, XXXXXXX
+       KC_ESC, XXXXXXX, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                    KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, XXXXXXX,
+      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                    KC_CIRC,  KC_DQT, KC_LPRN, KC_RPRN,  KC_DLR, XXXXXXX,
+      KC_LSFT, XXXXXXX, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                      KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, XXXXXXX,
+                                          XXXXXXX,  KC_SPC, XXXXXXX,  _______, _______, XXXXXXX
   ),
   // ==============================================
   // ### WIP layers
