@@ -89,39 +89,10 @@ Legend:
 
 ### NUM layer
 
-NOTE: WIP this symbol layer is being oberwritten by the next symbol layer.
-
 ```text
-ES ~  -  +  9  •        •  8  *  /  : ♦1
-⌃  7  5  3  1  =        •  0  2  4  6 ♦2
-⇧  •  {  [  (  <        >  )  ]  }  _ •
-            •  ■  •  •  ■  •
-```
-
-I'm describing NUM and SYM together here, because they go together really.
-
-The home row contains the numbers.
-The strong fingers get the numbers which are more frequent.
-0123 are the most common ones,
-[see details](https://getreuer.info/posts/keyboards/symbol-layer/index.html#my-symbol-layer).
-The left has the uneven numbers, the right the even.
-
-Arithmetic operators are on strong fingers on the top row:
-`-+` on the left, `*/` on the right.
-
-The bottom row contains all the different kinds of parenthesis.
-Opening on the left, closing on the right.
-
-Some useful keys from the alpha layer bleed through: `:_`
-
-TODO: what should I do with the empyt keys?
-
-### NUM layer
-
-```text
-ES •  /  *  #  |        .  7  8  9  : •
+ES .  /  *  #  |        .  7  8  9  : •
 ⌃  !  -  +  =  ~        0  4  5  6  0 •
-⇧  •  <  >  %  &        ,  1  2  3  _ •
+⇧  ,  <  >  %  &        ,  1  2  3  _ •
             •  •  ■  (  )  •
 ```
 
@@ -132,26 +103,10 @@ but is should making working with the num layer comfortable.
 
 ### SYMBOL layer
 
-NOTE: WIP this symbol layer is being oberwritten by the next symbol layer.
-
 ```text
-ES ~  -  +  \  |        `  `  *  /  : ♦1
-⌃  &  %  #  !  =        '  "  @  $  ^ ♦2
-⇧  •  {  [  (  <        >  )  ]  }  _ •
-            •  ␣  •  ■  •  •
-```
-
-Like the NUM layer, but the SYM layer
-
-- contains the symbols of the shifted numbers,
-- contains the rest of the symbols.
-
-### SYMBOL layer
-
-```text
-ES •  /  *  #  |        \  '  [  ]  : •
+ES .  /  *  #  |        \  '  [  ]  : •
 ⌃  !  -  +  =  ~        ^  "  (  )  $ •
-⇧  •  <  >  %  &        @  `  {  }  _ •
+⇧  ,  <  >  %  &        @  `  {  }  _ •
             •  ␣  •  ■  •  •
 ```
 

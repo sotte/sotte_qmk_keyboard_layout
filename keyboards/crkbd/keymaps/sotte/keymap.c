@@ -175,45 +175,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// ### NUM layer
   ///
-  /// NOTE: WIP this symbol layer is being oberwritten by the next symbol layer.
-  ///
   /// ```text
-  /// ES ~  -  +  9  •        •  8  *  /  : ♦1
-  /// ⌃  7  5  3  1  =        •  0  2  4  6 ♦2
-  /// ⇧  •  {  [  (  <        >  )  ]  }  _ •
-  ///             •  ■  •  •  ■  •
-  /// ```
-  ///
-  /// I'm describing NUM and SYM together here, because they go together really.
-  ///
-  /// The home row contains the numbers.
-  /// The strong fingers get the numbers which are more frequent.
-  /// 0123 are the most common ones,
-  /// [see details](https://getreuer.info/posts/keyboards/symbol-layer/index.html#my-symbol-layer).
-  /// The left has the uneven numbers, the right the even.
-  ///
-  /// Arithmetic operators are on strong fingers on the top row:
-  /// `-+` on the left, `*/` on the right.
-  ///
-  /// The bottom row contains all the different kinds of parenthesis.
-  /// Opening on the left, closing on the right.
-  ///
-  /// Some useful keys from the alpha layer bleed through: `:_`
-  ///
-  /// TODO: what should I do with the empyt keys?
-  [NUM_L] = LAYOUT_split_3x6_3(
-       KC_ESC, KC_TILD, KC_MINS, KC_PLUS,    KC_9, KC_PIPE,                     XXXXXXX,    KC_8, KC_ASTR, KC_SLSH, KC_COLN, XXXXXXX,
-      KC_LCTL,    KC_7,    KC_5,    KC_3,    KC_1,  KC_EQL,                     XXXXXXX,    KC_0,    KC_2,    KC_4,    KC_6, XXXXXXX,
-      KC_LSFT, XXXXXXX, KC_LCBR, KC_LBRC, KC_LPRN, KC_LABK,                     KC_RABK, KC_RPRN, KC_RBRC, KC_RCBR, KC_UNDS, XXXXXXX,
-                                          XXXXXXX, _______, _______,   _______, _______, XXXXXXX
-  ),
-  ///
-  /// ### NUM layer
-  ///
-  /// ```text
-  /// ES •  /  *  #  |        .  7  8  9  : •
+  /// ES .  /  *  #  |        .  7  8  9  : •
   /// ⌃  !  -  +  =  ~        0  4  5  6  0 •
-  /// ⇧  •  <  >  %  &        ,  1  2  3  _ •
+  /// ⇧  ,  <  >  %  &        ,  1  2  3  _ •
   ///             •  •  ■  (  )  •
   /// ```
   ///
@@ -222,40 +187,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// but is should making working with the num layer comfortable.
   ///
   [NUM_L] = LAYOUT_split_3x6_3(
-       KC_ESC, XXXXXXX, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                    KC_COMM,    KC_7,    KC_8,    KC_9, KC_COLN, XXXXXXX,
+       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                    KC_COMM,    KC_7,    KC_8,    KC_9, KC_COLN, XXXXXXX,
       KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                       KC_0,    KC_4,    KC_5,    KC_6,    KC_0, XXXXXXX,
-      KC_LSFT, XXXXXXX, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                     KC_DOT,    KC_1,    KC_2,    KC_3, KC_UNDS, XXXXXXX,
+      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                     KC_DOT,    KC_1,    KC_2,    KC_3, KC_UNDS, XXXXXXX,
                                           XXXXXXX, XXXXXXX, _______,  KC_LPRN, KC_RPRN, XXXXXXX
   ),
   ///
   /// ### SYMBOL layer
   ///
-  /// NOTE: WIP this symbol layer is being oberwritten by the next symbol layer.
-  ///
   /// ```text
-  /// ES ~  -  +  \  |        `  `  *  /  : ♦1
-  /// ⌃  &  %  #  !  =        '  "  @  $  ^ ♦2
-  /// ⇧  •  {  [  (  <        >  )  ]  }  _ •
-  ///             •  ␣  •  ■  •  •
-  /// ```
-  ///
-  /// Like the NUM layer, but the SYM layer
-  ///
-  /// - contains the symbols of the shifted numbers,
-  /// - contains the rest of the symbols.
-  [SYM_L] = LAYOUT_split_3x6_3(
-       KC_ESC, KC_TILD, KC_MINS, KC_PLUS, KC_BSLS, KC_PIPE,                     KC_GRV,  KC_GRV, KC_ASTR, KC_SLSH, KC_COLN, XXXXXXX,
-      KC_LCTL, KC_AMPR, KC_PERC, KC_HASH, KC_EXLM,  KC_EQL,                    KC_QUOT,  KC_DQT,   KC_AT,  KC_DLR, KC_CIRC, XXXXXXX,
-      KC_LSFT, XXXXXXX, KC_LCBR, KC_LBRC, KC_LPRN, KC_LABK,                    KC_RABK, KC_RPRN, KC_RBRC, KC_RCBR, KC_UNDS, XXXXXXX,
-                                          XXXXXXX,  KC_SPC, XXXXXXX,  _______, _______, XXXXXXX
-  ),
-  ///
-  /// ### SYMBOL layer
-  ///
-  /// ```text
-  /// ES •  /  *  #  |        \  '  [  ]  : •
+  /// ES .  /  *  #  |        \  '  [  ]  : •
   /// ⌃  !  -  +  =  ~        ^  "  (  )  $ •
-  /// ⇧  •  <  >  %  &        @  `  {  }  _ •
+  /// ⇧  ,  <  >  %  &        @  `  {  }  _ •
   ///             •  ␣  •  ■  •  •
   /// ```
   ///
@@ -263,13 +206,69 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// https://getreuer.info/posts/keyboards/symbol-layer/index.html
   ///
   [SYM_L] = LAYOUT_split_3x6_3(
-       KC_ESC, XXXXXXX, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                    KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, XXXXXXX,
+       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                    KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, XXXXXXX,
       KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                    KC_CIRC,  KC_DQT, KC_LPRN, KC_RPRN,  KC_DLR, XXXXXXX,
-      KC_LSFT, XXXXXXX, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                      KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, XXXXXXX,
+      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                      KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, XXXXXXX,
                                           XXXXXXX,  KC_SPC, XXXXXXX,  _______, _______, XXXXXXX
   ),
   // ==============================================
   // ### WIP layers
+  // ### NUM layer
+  //
+  // NOTE: WIP this symbol layer is being oberwritten by the next symbol layer.
+  //
+  // ```text
+  // ES ~  -  +  9  •        •  8  *  /  : ♦1
+  // ⌃  7  5  3  1  =        •  0  2  4  6 ♦2
+  // ⇧  •  {  [  (  <        >  )  ]  }  _ •
+  //             •  ■  •  •  ■  •
+  // ```
+  //
+  // I'm describing NUM and SYM together here, because they go together really.
+  //
+  // The home row contains the numbers.
+  // The strong fingers get the numbers which are more frequent.
+  // 0123 are the most common ones,
+  // [see details](https://getreuer.info/posts/keyboards/symbol-layer/index.html#my-symbol-layer).
+  // The left has the uneven numbers, the right the even.
+  //
+  // Arithmetic operators are on strong fingers on the top row:
+  // `-+` on the left, `*/` on the right.
+  //
+  // The bottom row contains all the different kinds of parenthesis.
+  // Opening on the left, closing on the right.
+  //
+  // Some useful keys from the alpha layer bleed through: `:_`
+  //
+  // [NUM_L] = LAYOUT_split_3x6_3(
+  //      KC_ESC, KC_TILD, KC_MINS, KC_PLUS,    KC_9, KC_PIPE,                     XXXXXXX,    KC_8, KC_ASTR, KC_SLSH, KC_COLN, XXXXXXX,
+  //     KC_LCTL,    KC_7,    KC_5,    KC_3,    KC_1,  KC_EQL,                     XXXXXXX,    KC_0,    KC_2,    KC_4,    KC_6, XXXXXXX,
+  //     KC_LSFT, XXXXXXX, KC_LCBR, KC_LBRC, KC_LPRN, KC_LABK,                     KC_RABK, KC_RPRN, KC_RBRC, KC_RCBR, KC_UNDS, XXXXXXX,
+  //                                         XXXXXXX, _______, _______,   _______, _______, XXXXXXX
+  // ),
+  //
+  //
+  // ### SYMBOL layer
+  //
+  // NOTE: WIP this symbol layer is being oberwritten by the next symbol layer.
+  //
+  // ```text
+  // ES ~  -  +  \  |        `  `  *  /  : ♦1
+  // ⌃  &  %  #  !  =        '  "  @  $  ^ ♦2
+  // ⇧  •  {  [  (  <        >  )  ]  }  _ •
+  //             •  ␣  •  ■  •  •
+  // ```
+  //
+  // Like the NUM layer, but the SYM layer
+  //
+  // - contains the symbols of the shifted numbers,
+  // - contains the rest of the symbols.
+  // [SYM_L] = LAYOUT_split_3x6_3(
+  //      KC_ESC, KC_TILD, KC_MINS, KC_PLUS, KC_BSLS, KC_PIPE,                     KC_GRV,  KC_GRV, KC_ASTR, KC_SLSH, KC_COLN, XXXXXXX,
+  //     KC_LCTL, KC_AMPR, KC_PERC, KC_HASH, KC_EXLM,  KC_EQL,                    KC_QUOT,  KC_DQT,   KC_AT,  KC_DLR, KC_CIRC, XXXXXXX,
+  //     KC_LSFT, XXXXXXX, KC_LCBR, KC_LBRC, KC_LPRN, KC_LABK,                    KC_RABK, KC_RPRN, KC_RBRC, KC_RCBR, KC_UNDS, XXXXXXX,
+  //                                         XXXXXXX,  KC_SPC, XXXXXXX,  _______, _______, XXXXXXX
+  // ),
   //
   // ### WIP ALT SYMBOL layer
   // ```text
