@@ -17,8 +17,6 @@ I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-c
 <!-- REPLACE_MARKER_START -->
 ### Thumb cluster and layers
 
-I actually only use middle and inner thumb keys of the thumb cluster.
-
 ```text
 NAV: ...  .■.
 SYM: .■.  ...
@@ -31,7 +29,7 @@ NUM: .■.  .■.
 ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
 ⌃  aA rR sS tT dD       hH nN eE iI oO ♦3
 ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦2
-            •  ␣  ♦8 ♦9 ♦⇧ •
+            ↵  ␣  ♦8 ♦9 ♦⇧ •
 ```
 
 This is a almost standard colemak layout.
@@ -54,7 +52,7 @@ Legend:
 ES Cq Cw Cf ♦4 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
 ⌃  A  G  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦3
 ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦2
-            •  ■  •  •  •  •
+            •  •  ■  •  •  •  •
 ```
 
 A fairly simple nav layer.

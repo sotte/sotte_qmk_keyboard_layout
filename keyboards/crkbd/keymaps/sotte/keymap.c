@@ -93,8 +93,6 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### Thumb cluster and layers
   ///
-  /// I actually only use middle and inner thumb keys of the thumb cluster.
-  ///
   /// ```text
   /// NAV: ...  .■.
   /// SYM: .■.  ...
@@ -107,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
   /// ⌃  aA rR sS tT dD       hH nN eE iI oO ♦3
   /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦2
-  ///             •  ␣  ♦8 ♦9 ♦⇧ •
+  ///             ↵  ␣  ♦8 ♦9 ♦⇧ •
   /// ```
   ///
   /// This is a almost standard colemak layout.
@@ -127,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, TO(ALPHA_L),
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, QK_REP,
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, TO(NAV_L),
-                                          XXXXXXX,  KC_SPC,  LA_NAV,    LA_SYM,  OSM_SFT, XXXXXXX
+                                           KC_ENT,  KC_SPC,  LA_NAV,    LA_SYM,  OSM_SFT, XXXXXXX
   ),
   ///
   /// ### NAV layer
@@ -136,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES Cq Cw Cf ♦4 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
   /// ⌃  A  G  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦3
   /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦2
-  ///             •  ■  •  •  •  •
+  ///             •  •  ■  •  •  •  •
   /// ```
   ///
   /// A fairly simple nav layer.
@@ -153,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - ♦4: Ctrl-t / my tmux prefix
   [NAV_L] = LAYOUT_split_3x6_3(
        KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, TO(ALPHA_L),
-      KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, QK_REP,
+      KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, QK_REP,
       KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, TO(NAV_L),
                                           _______, _______, _______,    _______, _______, _______
   ),
@@ -365,6 +363,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
   case LA_SYM:
   case LA_NAV:
   case KC_LSFT:
+  case KC_LCTL:
   case OS_SHFT:
   case OS_CTRL:
   case OS_ALT:
