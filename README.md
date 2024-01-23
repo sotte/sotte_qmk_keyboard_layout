@@ -85,7 +85,7 @@ Legend:
 - ♦1: Switch to ALPHA layer.
 - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
 - ♦3: Repeat last key (combo)
-- ♦4: Print screen
+- ♦4: Ctrl-t / my tmux prefix
 
 ### NUM layer
 
