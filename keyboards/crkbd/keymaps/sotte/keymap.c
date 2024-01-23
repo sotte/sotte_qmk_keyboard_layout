@@ -102,9 +102,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### ALPHA layer
   ///
   /// ```text
-  /// ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
-  /// ⌃  aA rR sS tT dD       hH nN eE iI oO ♦3
-  /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦2
+  /// ES qQ wW fF pP gG       jJ lL uU yY :; ⌫
+  /// ⌃  aA rR sS tT dD       hH nN eE iI oO ↵
+  /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦3
   ///             ↵  ␣  ♦8 ♦9 ♦⇧ •
   /// ```
   ///
@@ -115,16 +115,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// Legend:
   ///
-  /// - ♦1: Switch to ALPHA layer.
-  /// - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
-  /// - ♦3: Repeat last key (combo)
+  /// - ♦3: Repeat last key (or combo)
   /// - ♦⇧: One-shot shift
-  /// - ♦8: Activate NAV layer
-  /// - ♦9: Activate NUM layer
+  /// - ♦8: NAV layer on press
+  /// - ♦9: NUM layer on press
   [ALPHA_L] = LAYOUT_split_3x6_3(
-       KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, TO(ALPHA_L),
-      KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, QK_REP,
-      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, TO(NAV_L),
+       KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
+      KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  KC_ENT,
+      OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS,  QK_REP,
                                            KC_ENT,  KC_SPC,  LA_NAV,    LA_SYM,  OSM_SFT, XXXXXXX
   ),
   ///

@@ -26,9 +26,9 @@ NUM: .■.  .■.
 ### ALPHA layer
 
 ```text
-ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
-⌃  aA rR sS tT dD       hH nN eE iI oO ♦3
-♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦2
+ES qQ wW fF pP gG       jJ lL uU yY :; ⌫
+⌃  aA rR sS tT dD       hH nN eE iI oO ↵
+♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦3
             ↵  ␣  ♦8 ♦9 ♦⇧ •
 ```
 
@@ -39,12 +39,10 @@ as they are quite common ([ref](https://getreuer.info/posts/keyboards/symbol-lay
 
 Legend:
 
-- ♦1: Switch to ALPHA layer.
-- ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
-- ♦3: Repeat last key (combo)
+- ♦3: Repeat last key (or combo)
 - ♦⇧: One-shot shift
-- ♦8: Activate NAV layer
-- ♦9: Activate NUM layer
+- ♦8: NAV layer on press
+- ♦9: NUM layer on press
 
 ### NAV layer
 
