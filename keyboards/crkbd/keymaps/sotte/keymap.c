@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include QMK_KEYBOARD_H
 #include "features/custom_shift_keys.h"
+#include "features/oneshot.h"
 // #include "features/achordion.h"
 
 enum layer_names {
@@ -25,12 +26,14 @@ enum layer_names {
   NAV_L,
   SYM_L,
   NUM_L,
-  // maybe later
-  SYM_ALT_L,
-  NUM_ALT_L,
-  NUM_ALT2_L,
-  MOUSE_L,
-  FUNC_L,
+};
+
+enum keycodes {
+  // oneshot keycodes without timers
+  OS_SHFT = SAFE_RANGE,
+  OS_CTRL,
+  OS_ALT,
+  OS_GUI,
 };
 
 // Home row mods - currently not used
@@ -44,16 +47,13 @@ enum layer_names {
 // #define E_MTC RCTL_T(KC_E)
 // #define I_MTA LALT_T(KC_I)
 // #define O_MTG RGUI_T(KC_O)
-//
-// This can be the homerow if you use home row mods
-// MO(NAV_L),   A_MTG,   R_MTA,   S_MTC,   T_MTS,    KC_D,                         KC_H,   N_MTS,   E_MTC,   I_MTA,   O_MTG, KC_QUOT,
-
 
 // aliases - mostly to keep the format/style consistent
 #define OSM_SFT OSM(MOD_LSFT)
 #define OSM_CTL OSM(MOD_LCTL)
 #define OSM_GUI OSM(MOD_LGUI)
 #define OSM_ALT OSM(MOD_LALT)
+// TODO: rethink these
 #define CTRL_C  LCTL(KC_C)
 #define CTRL_D  LCTL(KC_D)
 #define CTRL_F  LCTL(KC_F)
@@ -62,17 +62,21 @@ enum layer_names {
 #define CTRL_V  LCTL(KC_V)
 #define CTRL_W  LCTL(KC_W)
 
-// Layer tabs
-#define BSP_SYM  LT(SYM_L, KC_BSPC)
-#define DEL_FUNC LT(FUNC_L, KC_DEL)
-#define ENT_NUM  LT(NUM_ALT_L, KC_ENT)
-#define ESC_NAV  LT(NAV_L, KC_ESC)
-#define ESC_NUM  LT(NUM_L, KC_ESC)
-#define ESC_SYM  LT(SYM_L, KC_ESC)
-#define SPC_NAV  LT(NAV_L, KC_SPC)
-#define SPC_SYM  LT(SYM_ALT_L, KC_SPC)
-#define SPC_NUM  LT(NUM_ALT_L, KC_SPC)
-#define TAB_MOU  LT(MOUSE_L, KC_TAB)
+#define LA_NAV  MO(NAV_L)
+#define LA_SYM  MO(SYM_L)
+#define LA_NUM  MO(NUM_L)
+
+// // Layer tabs
+// #define BSP_SYM  LT(SYM_L, KC_BSPC)
+// #define DEL_FUNC LT(FUNC_L, KC_DEL)
+// #define ENT_NUM  LT(NUM_ALT_L, KC_ENT)
+// #define ESC_NAV  LT(NAV_L, KC_ESC)
+// #define ESC_NUM  LT(NUM_L, KC_ESC)
+// #define ESC_SYM  LT(SYM_L, KC_ESC)
+// #define SPC_NAV  LT(NAV_L, KC_SPC)
+// #define SPC_SYM  LT(SYM_ALT_L, KC_SPC)
+// #define SPC_NUM  LT(NUM_ALT_L, KC_SPC)
+// #define TAB_MOU  LT(MOUSE_L, KC_TAB)
 // #define CTRL_SYM LT(SYM_ALT_L, OSM)
 
 // custom shift keys
@@ -84,27 +88,6 @@ const custom_shift_key_t custom_shift_keys[] = {
   // {KC_MINS, KC_EQL }, // Shift - is =
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
-
-
-/// ### Symbols legend
-///
-/// ```text
-/// ■ pressed thumb key
-/// • noop
-/// ↵ enter
-/// ⌫ backspace
-/// ⌦ del
-/// ⭾ tab
-/// ↥↧ page up/down
-/// ⇤⇥ home/end
-/// ←↑↓→ arrows
-/// ⌥⌘⇧⌃ alt/gui/shift/ctrl also AGSC
-/// ␣ space
-/// ES ESC
-/// Cc Ctrl+c, Cv Ctrl+v
-/// ♦1 special feature 1; explained in the doc
-/// ```
-///
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -124,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES qQ wW fF pP gG       jJ lL uU yY :; ♦1
   /// ⌃  aA rR sS tT dD       hH nN eE iI oO ♦3
   /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦2
-  ///             •  ␣  ␛  ♦⇧ ⌫  •
+  ///             •  ␣  ♦8 ♦9 ♦⇧ •
   /// ```
   ///
   /// This is a almost standard colemak layout.
@@ -138,20 +121,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
   /// - ♦3: Repeat last key (combo)
   /// - ♦⇧: One-shot shift
+  /// - ♦8: Activate NAV layer
+  /// - ♦9: Activate NUM layer
   [ALPHA_L] = LAYOUT_split_3x6_3(
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, TO(ALPHA_L),
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, QK_REP,
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, TO(NAV_L),
-                                          XXXXXXX, SPC_NAV, ESC_NUM,    OSM_SFT, BSP_SYM, XXXXXXX
+                                          XXXXXXX,  KC_SPC,  LA_NAV,    LA_SYM,  OSM_SFT, XXXXXXX
   ),
   ///
   /// ### NAV layer
   ///
   /// ```text
-  /// ES Cq Cw Cf ♦0 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
-  /// ⌃  A  G  S  C  Cd       ⇤  ←  ↓  →  ⇥ ♦3
+  /// ES Cq Cw Cf ♦4 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
+  /// ⌃  A  G  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦3
   /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦2
-  ///             •  ■  •  ⌦  ⌫  •
+  ///             •  ■  •  •  •  •
   /// ```
   ///
   /// A fairly simple nav layer.
@@ -168,29 +153,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - ♦4: Ctrl-t / my tmux prefix
   [NAV_L] = LAYOUT_split_3x6_3(
        KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, TO(ALPHA_L),
-      KC_LCTL, OSM_ALT, OSM_GUI, OSM_SFT, OSM_CTL,  CTRL_D,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, QK_REP,
+      KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      XXXXXXX, KC_LEFT, KC_DOWN,KC_RIGHT, XXXXXXX, QK_REP,
       KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, TO(NAV_L),
-                                          _______, _______, XXXXXXX,     KC_DEL, KC_BSPC, XXXXXXX
-  ),
-  ///
-  /// ### NUM layer
-  ///
-  /// ```text
-  /// ES .  /  *  #  |        .  7  8  9  : •
-  /// ⌃  !  -  +  =  ~        0  4  5  6  0 •
-  /// ⇧  ,  <  >  %  &        ,  1  2  3  _ •
-  ///             •  •  ■  (  )  •
-  /// ```
-  ///
-  /// The right side is the real NUM layer.
-  /// The left side is the symbol layer really,
-  /// but is should making working with the num layer comfortable.
-  ///
-  [NUM_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                    KC_COMM,    KC_7,    KC_8,    KC_9, KC_COLN, XXXXXXX,
-      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                       KC_0,    KC_4,    KC_5,    KC_6,    KC_0, XXXXXXX,
-      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                     KC_DOT,    KC_1,    KC_2,    KC_3, KC_UNDS, XXXXXXX,
-                                          XXXXXXX, XXXXXXX, _______,  KC_LPRN, KC_RPRN, XXXXXXX
+                                          _______, _______, _______,    _______, _______, _______
   ),
   ///
   /// ### SYMBOL layer
@@ -199,17 +164,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES .  /  *  #  |        \  '  [  ]  : •
   /// ⌃  !  -  +  =  ~        ^  "  (  )  $ •
   /// ⇧  ,  <  >  %  &        @  `  {  }  _ •
-  ///             •  ␣  •  ■  •  •
+  ///             •  •  •  ■  •  •
   /// ```
   ///
   /// Inspired by getreuer:
   /// https://getreuer.info/posts/keyboards/symbol-layer/index.html
   ///
   [SYM_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                    KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, XXXXXXX,
-      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                    KC_CIRC,  KC_DQT, KC_LPRN, KC_RPRN,  KC_DLR, XXXXXXX,
-      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                      KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, XXXXXXX,
-                                          XXXXXXX,  KC_SPC, XXXXXXX,  _______, _______, XXXXXXX
+       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                      KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, XXXXXXX,
+      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                      KC_CIRC,  KC_DQT, KC_LPRN, KC_RPRN,  KC_DLR, XXXXXXX,
+      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                        KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, XXXXXXX,
+                                          _______, _______, _______,    _______, _______, _______
+  ),
+  ///
+  /// ### NUM layer
+  ///
+  /// ```text
+  /// ES .  /  *  #  |        .  7  8  9  : •
+  /// ⌃  !  -  +  =  ~        0  4  5  6  0 •
+  /// ⇧  ,  <  >  %  &        ,  1  2  3  _ •
+  ///             •  •  ■  ■  •  •
+  /// ```
+  ///
+  /// The right side is the real NUM layer.
+  /// The left side is the symbol layer really,
+  /// but is should making working with the num layer comfortable.
+  ///
+  [NUM_L] = LAYOUT_split_3x6_3(
+       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                      KC_COMM,    KC_7,    KC_8,    KC_9, KC_COLN, XXXXXXX,
+      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                         KC_0,    KC_4,    KC_5,    KC_6,    KC_0, XXXXXXX,
+      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                       KC_DOT,    KC_1,    KC_2,    KC_3, KC_UNDS, XXXXXXX,
+                                          _______, _______, _______,    _______, _______, _______
   ),
   // ==============================================
   // ### WIP layers
@@ -342,11 +327,85 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //
 };
 
+/// ### Symbols legend
+///
+/// ```text
+/// ■ pressed thumb key
+/// • noop
+/// ↵ enter
+/// ⌫ backspace
+/// ⌦ del
+/// ⭾ tab
+/// ↥↧ page up/down
+/// ⇤⇥ home/end
+/// ←↑↓→ arrows
+/// ⌥⌘⇧⌃ alt/gui/shift/ctrl also AGSC
+/// ␣ space
+/// ES ESC
+/// Cc Ctrl+c, Cv Ctrl+v
+/// ♦1 special feature 1; explained in the doc
+/// ```
+///
+
+
+
+// ==============================================
+// callum oneshot configuration
+bool is_oneshot_cancel_key(uint16_t keycode) {
+  switch (keycode) {
+  case LA_SYM:
+  case LA_NAV:
+    return true;
+  default:
+    return false;
+  }
+}
+bool is_oneshot_ignored_key(uint16_t keycode) {
+  switch (keycode) {
+  case LA_SYM:
+  case LA_NAV:
+  case KC_LSFT:
+  case OS_SHFT:
+  case OS_CTRL:
+  case OS_ALT:
+  case OS_GUI:
+    return true;
+  default:
+    return false;
+  }
+}
+oneshot_state os_shft_state = os_up_unqueued;
+oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_alt_state = os_up_unqueued;
+oneshot_state os_cmd_state = os_up_unqueued;
+
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   // if (!process_achordion(keycode, record)) { return false; }
   if (!process_custom_shift_keys(keycode, record)) { return false; }
+
+  update_oneshot(
+    &os_shft_state, KC_LSFT, OS_SHFT,
+    keycode, record
+  );
+  update_oneshot(
+    &os_ctrl_state, KC_LCTL, OS_CTRL,
+    keycode, record
+  );
+  update_oneshot(
+  &  os_alt_state, KC_LALT, OS_ALT,
+    keycode, record
+  );
+  update_oneshot(
+    &os_cmd_state, KC_LCMD, OS_GUI,
+    keycode, record
+  );
+
   // Your macros ...
   return true;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, SYM_L, NAV_L, NUM_L);
 }
 
 // void matrix_scan_user(void) {

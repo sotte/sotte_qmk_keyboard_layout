@@ -1,5 +1,6 @@
 # SRC += features/achordion.c
 SRC += features/custom_shift_keys.c
+SRC += features/oneshot.c
 
 CONVERT_TO=promicro_rp2040
 MOUSEKEY_ENABLE = yes
