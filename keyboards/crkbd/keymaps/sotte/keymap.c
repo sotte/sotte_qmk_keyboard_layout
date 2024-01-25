@@ -21,6 +21,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "features/oneshot.h"
 // #include "features/achordion.h"
 
+// Home row mods - currently not used
+// Left-hand home row mods
+// #define A_MTG LGUI_T(KC_A)
+// #define R_MTA LALT_T(KC_R)
+// #define S_MTC LCTL_T(KC_S)
+// #define T_MTS LSFT_T(KC_T)
+// Right-hand home row mods
+// #define N_MTS RSFT_T(KC_N)
+// #define E_MTC RCTL_T(KC_E)
+// #define I_MTA LALT_T(KC_I)
+// #define O_MTG RGUI_T(KC_O)
+
 enum layer_names {
   ALPHA_L,
   NAV_L,
@@ -36,23 +48,13 @@ enum keycodes {
   OS_GUI,
 };
 
-// Home row mods - currently not used
-// Left-hand home row mods
-// #define A_MTG LGUI_T(KC_A)
-// #define R_MTA LALT_T(KC_R)
-// #define S_MTC LCTL_T(KC_S)
-// #define T_MTS LSFT_T(KC_T)
-// Right-hand home row mods
-// #define N_MTS RSFT_T(KC_N)
-// #define E_MTC RCTL_T(KC_E)
-// #define I_MTA LALT_T(KC_I)
-// #define O_MTG RGUI_T(KC_O)
-
 // aliases - mostly to keep the format/style consistent
+// one shot mods
 #define OSM_SFT OSM(MOD_LSFT)
 #define OSM_CTL OSM(MOD_LCTL)
 #define OSM_GUI OSM(MOD_LGUI)
 #define OSM_ALT OSM(MOD_LALT)
+// Ctrl+Something
 // TODO: rethink these
 #define CTRL_C  LCTL(KC_C)
 #define CTRL_D  LCTL(KC_D)
@@ -61,19 +63,18 @@ enum keycodes {
 #define CTRL_T  LCTL(KC_T)
 #define CTRL_V  LCTL(KC_V)
 #define CTRL_W  LCTL(KC_W)
-
+// layers
 #define LA_NAV  MO(NAV_L)
 #define LA_SYM  MO(SYM_L)
 #define LA_NUM  MO(NUM_L)
-
-// // Layer tabs
+// Layer tabs
 // #define BSP_SYM  LT(SYM_L, KC_BSPC)
 // #define DEL_FUNC LT(FUNC_L, KC_DEL)
 // #define ENT_NUM  LT(NUM_ALT_L, KC_ENT)
 // #define ESC_NAV  LT(NAV_L, KC_ESC)
 // #define ESC_NUM  LT(NUM_L, KC_ESC)
 // #define ESC_SYM  LT(SYM_L, KC_ESC)
-// #define SPC_NAV  LT(NAV_L, KC_SPC)
+#define SPC_NAV  LT(NAV_L, KC_SPC)
 // #define SPC_SYM  LT(SYM_ALT_L, KC_SPC)
 // #define SPC_NUM  LT(NUM_ALT_L, KC_SPC)
 // #define TAB_MOU  LT(MOUSE_L, KC_TAB)
@@ -105,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES qQ wW fF pP gG       jJ lL uU yY :; ⌫
   /// ⌃  aA rR sS tT dD       hH nN eE iI oO ↵
   /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦3
-  ///             ↵  ␣  ♦8 ♦9 ♦⇧ •
+  ///             •  ♦␣ ↵  ♦⇧ ♦9 •
   /// ```
   ///
   /// This is a almost standard colemak layout.
@@ -117,13 +118,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// - ♦3: Repeat last key (or combo)
   /// - ♦⇧: One-shot shift
-  /// - ♦8: NAV layer on press
-  /// - ♦9: NUM layer on press
+  /// - ♦␣: space on press, NAV layer on hold
+  /// - ♦8: SYM layer on press
   [ALPHA_L] = LAYOUT_split_3x6_3(
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  KC_ENT,
       OSM_SFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS,  QK_REP,
-                                           KC_ENT,  KC_SPC,  LA_NAV,    LA_SYM,  OSM_SFT, XXXXXXX
+                                          XXXXXXX, SPC_NAV,  KC_ENT,    OSM_SFT,  LA_SYM, XXXXXXX
   ),
   ///
   /// ### NAV layer
@@ -349,6 +350,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // callum oneshot configuration
 bool is_oneshot_cancel_key(uint16_t keycode) {
   switch (keycode) {
+  case KC_ESC:
   case LA_SYM:
   case LA_NAV:
     return true;
@@ -358,6 +360,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 }
 bool is_oneshot_ignored_key(uint16_t keycode) {
   switch (keycode) {
+  case SPC_NAV:
   case LA_SYM:
   case LA_NAV:
   case KC_LSFT:
@@ -371,40 +374,25 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     return false;
   }
 }
-oneshot_state os_shft_state = os_up_unqueued;
-oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_sft_state = os_up_unqueued;
+oneshot_state os_ctl_state = os_up_unqueued;
 oneshot_state os_alt_state = os_up_unqueued;
-oneshot_state os_cmd_state = os_up_unqueued;
+oneshot_state os_gui_state = os_up_unqueued;
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  // if (!process_achordion(keycode, record)) { return false; }
-  if (!process_custom_shift_keys(keycode, record)) { return false; }
-
-  update_oneshot(
-    &os_shft_state, KC_LSFT, OS_SHFT,
-    keycode, record
-  );
-  update_oneshot(
-    &os_ctrl_state, KC_LCTL, OS_CTRL,
-    keycode, record
-  );
-  update_oneshot(
-  &  os_alt_state, KC_LALT, OS_ALT,
-    keycode, record
-  );
-  update_oneshot(
-    &os_cmd_state, KC_LCMD, OS_GUI,
-    keycode, record
-  );
-
-  // Your macros ...
-  return true;
-}
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, SYM_L, NAV_L, NUM_L);
 }
 
-// void matrix_scan_user(void) {
-//   achordion_task();
-// }
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  if (!process_custom_shift_keys(keycode, record)) {
+    return false;
+  }
+
+  update_oneshot(&os_sft_state, KC_LSFT, OS_SHFT, keycode, record);
+  update_oneshot(&os_ctl_state, KC_LCTL, OS_CTRL, keycode, record);
+  update_oneshot(&os_alt_state, KC_LALT, OS_ALT, keycode, record);
+  update_oneshot(&os_gui_state, KC_LGUI, OS_GUI, keycode, record);
+
+  return true;
+}

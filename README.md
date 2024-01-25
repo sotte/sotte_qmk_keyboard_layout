@@ -29,7 +29,7 @@ NUM: .■.  .■.
 ES qQ wW fF pP gG       jJ lL uU yY :; ⌫
 ⌃  aA rR sS tT dD       hH nN eE iI oO ↵
 ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦3
-            ↵  ␣  ♦8 ♦9 ♦⇧ •
+            •  ♦␣ ↵  ♦⇧ ♦9 •
 ```
 
 This is a almost standard colemak layout.
@@ -41,8 +41,8 @@ Legend:
 
 - ♦3: Repeat last key (or combo)
 - ♦⇧: One-shot shift
-- ♦8: NAV layer on press
-- ♦9: NUM layer on press
+- ♦␣: space on press, NAV layer on hold
+- ♦8: SYM layer on press
 
 ### NAV layer
 
