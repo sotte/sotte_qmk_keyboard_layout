@@ -22,14 +22,22 @@ NAV: ...  .■.
 SYM: .■.  ...
 NUM: .■.  .■.
 ```
+### Legend for special keys
+
+- ♦.: Repeat last key (or combo)
+- ♦⇧: One-shot shift
+- ␣N: space on press, NAV layer on hold
+- ♦T: Ctrl-t / my tmux prefix
+- ♦S: SYM layer on press
+- ♦9: NUM layer on press
 
 ### ALPHA layer
 
 ```text
 ES qQ wW fF pP gG       jJ lL uU yY :; ⌫
 ⌃  aA rR sS tT dD       hH nN eE iI oO ↵
-♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦3
-            •  ♦␣ ↵  ♦⇧ ♦9 •
+♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦.
+            •  ␣N ↵  ♦⇧ ♦S •
 ```
 
 This is a almost standard colemak layout.
@@ -37,34 +45,22 @@ It contains different non-alpha characters (and different shifted versions)
 as they are quite common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies)):
 `,?`, `.!`, `_-`, and `:;`.
 
-Legend:
-
-- ♦3: Repeat last key (or combo)
-- ♦⇧: One-shot shift
-- ♦␣: space on press, NAV layer on hold
-- ♦8: SYM layer on press
 
 ### NAV layer
 
 ```text
-ES Cq Cw Cf ♦4 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
-⌃  A  G  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦3
-⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦2
-            •  •  ■  •  •  •  •
+ES Cq Cw Cf ♦T •        ↥  ⌫  ↑  ⌦  ⌦ ⌫
+⌃  A  G  C  S  Cd       ⇤  ←  ↓  →  ⇥ ↵
+⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦3
+            •  ■  ↵  ♦⇧ ♦9 •
 ```
 
 A fairly simple nav layer.
 
 Note: you can use AGSC on the left side to create complex arrow movements/selections
 and delete behavior.
-AGSC are one-shot keys and can be used on other layers as well.
+AGCS are one-shot keys and can be used on other layers as well.
 
-Legend:
-
-- ♦1: Switch to ALPHA layer.
-- ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
-- ♦3: Repeat last key (combo)
-- ♦4: Ctrl-t / my tmux prefix
 
 ### SYMBOL layer
 
@@ -72,7 +68,7 @@ Legend:
 ES .  /  *  #  |        \  '  [  ]  : •
 ⌃  !  -  +  =  ~        ^  "  (  )  $ •
 ⇧  ,  <  >  %  &        @  `  {  }  _ •
-            •  •  •  ■  •  •
+            •  ␣9 ↵  ♦⇧ ■  •
 ```
 
 Inspired by getreuer:
@@ -85,7 +81,7 @@ https://getreuer.info/posts/keyboards/symbol-layer/index.html
 ES .  /  *  #  |        .  7  8  9  : •
 ⌃  !  -  +  =  ~        0  4  5  6  0 •
 ⇧  ,  <  >  %  &        ,  1  2  3  _ •
-            •  •  ■  ■  •  •
+            •  ■  •  •  ■  •
 ```
 
 The right side is the real NUM layer.

@@ -99,14 +99,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// SYM: .■.  ...
   /// NUM: .■.  .■.
   /// ```
+  /// ### Legend for special keys
+  ///
+  /// - ♦.: Repeat last key (or combo)
+  /// - ♦⇧: One-shot shift
+  /// - ␣N: space on press, NAV layer on hold
+  /// - ♦T: Ctrl-t / my tmux prefix
+  /// - ♦S: SYM layer on press
+  /// - ♦9: NUM layer on press
   ///
   /// ### ALPHA layer
   ///
   /// ```text
   /// ES qQ wW fF pP gG       jJ lL uU yY :; ⌫
   /// ⌃  aA rR sS tT dD       hH nN eE iI oO ↵
-  /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦3
-  ///             •  ♦␣ ↵  ♦⇧ ♦9 •
+  /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦.
+  ///             •  ␣N ↵  ♦⇧ ♦S •
   /// ```
   ///
   /// This is a almost standard colemak layout.
@@ -114,12 +122,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// as they are quite common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies)):
   /// `,?`, `.!`, `_-`, and `:;`.
   ///
-  /// Legend:
-  ///
-  /// - ♦3: Repeat last key (or combo)
-  /// - ♦⇧: One-shot shift
-  /// - ♦␣: space on press, NAV layer on hold
-  /// - ♦8: SYM layer on press
   [ALPHA_L] = LAYOUT_split_3x6_3(
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  KC_ENT,
@@ -130,28 +132,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### NAV layer
   ///
   /// ```text
-  /// ES Cq Cw Cf ♦4 •        ↥  ⌫  ↑  ⌦  ⌦ ♦1
-  /// ⌃  A  G  C  S  Cd       ⇤  ←  ↓  →  ⇥ ♦3
-  /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦2
-  ///             •  •  ■  •  •  •  •
+  /// ES Cq Cw Cf ♦T •        ↥  ⌫  ↑  ⌦  ⌦ ⌫
+  /// ⌃  A  G  C  S  Cd       ⇤  ←  ↓  →  ⇥ ↵
+  /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦3
+  ///             •  ■  ↵  ♦⇧ ♦9 •
   /// ```
   ///
   /// A fairly simple nav layer.
   ///
   /// Note: you can use AGSC on the left side to create complex arrow movements/selections
   /// and delete behavior.
-  /// AGSC are one-shot keys and can be used on other layers as well.
+  /// AGCS are one-shot keys and can be used on other layers as well.
   ///
-  /// Legend:
-  ///
-  /// - ♦1: Switch to ALPHA layer.
-  /// - ♦2: Switch to NAV layer. Sometimes I just want to use the cursors for a while.
-  /// - ♦3: Repeat last key (combo)
-  /// - ♦4: Ctrl-t / my tmux prefix
   [NAV_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, TO(ALPHA_L),
-      KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, QK_REP,
-      KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, TO(NAV_L),
+       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, _______,
+      KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
+      KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, _______,
                                           _______, _______, _______,    _______, _______, _______
   ),
   ///
@@ -161,16 +157,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES .  /  *  #  |        \  '  [  ]  : •
   /// ⌃  !  -  +  =  ~        ^  "  (  )  $ •
   /// ⇧  ,  <  >  %  &        @  `  {  }  _ •
-  ///             •  •  •  ■  •  •
+  ///             •  ␣9 ↵  ♦⇧ ■  •
   /// ```
   ///
   /// Inspired by getreuer:
   /// https://getreuer.info/posts/keyboards/symbol-layer/index.html
   ///
   [SYM_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                      KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, XXXXXXX,
-      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                      KC_CIRC,  KC_DQT, KC_LPRN, KC_RPRN,  KC_DLR, XXXXXXX,
-      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                        KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, XXXXXXX,
+       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                      KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, _______,
+      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                      KC_CIRC,  KC_DQT, KC_LPRN, KC_RPRN,  KC_DLR, _______,
+      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                        KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, _______,
                                           _______, _______, _______,    _______, _______, _______
   ),
   ///
@@ -180,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES .  /  *  #  |        .  7  8  9  : •
   /// ⌃  !  -  +  =  ~        0  4  5  6  0 •
   /// ⇧  ,  <  >  %  &        ,  1  2  3  _ •
-  ///             •  •  ■  ■  •  •
+  ///             •  ■  •  •  ■  •
   /// ```
   ///
   /// The right side is the real NUM layer.
@@ -188,9 +184,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// but is should making working with the num layer comfortable.
   ///
   [NUM_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                      KC_COMM,    KC_7,    KC_8,    KC_9, KC_COLN, XXXXXXX,
-      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                         KC_0,    KC_4,    KC_5,    KC_6,    KC_0, XXXXXXX,
-      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                       KC_DOT,    KC_1,    KC_2,    KC_3, KC_UNDS, XXXXXXX,
+       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                       KC_DOT,    KC_7,    KC_8,    KC_9, KC_COLN, _______,
+      KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                         KC_0,    KC_4,    KC_5,    KC_6,    KC_0, _______,
+      KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                      KC_COMM,    KC_1,    KC_2,    KC_3, KC_UNDS, _______,
                                           _______, _______, _______,    _______, _______, _______
   ),
   // ==============================================
