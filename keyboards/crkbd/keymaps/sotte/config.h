@@ -6,6 +6,8 @@
 #define TAPPING_TERM 200
 #define QUICK_TAP_TERM 0
 
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+
 // Frood settings for bootloader
 // https://42keebs.eu/shop/parts/controllers/frood-rp2040-pro-micro-controller/
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET // Activates the double-tap behavior
