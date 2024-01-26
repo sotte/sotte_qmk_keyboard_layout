@@ -22,6 +22,7 @@ NAV: ...  .■.
 SYM: .■.  ...
 NUM: .■.  .■.
 ```
+
 ### Legend for special keys
 
 - ♦.: Repeat last key (or combo)
@@ -45,7 +46,6 @@ It contains different non-alpha characters (and different shifted versions)
 as they are quite common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies)):
 `,?`, `.!`, `_-`, and `:;`.
 
-
 ### NAV layer
 
 ```text
@@ -61,7 +61,6 @@ Note: you can use AGSC on the left side to create complex arrow movements/select
 and delete behavior.
 AGCS are one-shot keys and can be used on other layers as well.
 
-
 ### SYMBOL layer
 
 ```text
@@ -73,7 +72,6 @@ ES .  /  *  #  |        \  '  [  ]  : •
 
 Inspired by getreuer:
 https://getreuer.info/posts/keyboards/symbol-layer/index.html
-
 
 ### NUM layer
 

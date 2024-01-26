@@ -99,6 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// SYM: .■.  ...
   /// NUM: .■.  .■.
   /// ```
+  ///
   /// ### Legend for special keys
   ///
   /// - ♦.: Repeat last key (or combo)
@@ -128,7 +129,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       OS_SHFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS,  QK_REP,
                                           XXXXXXX, SPC_NAV,  KC_ENT,    OSM_SFT,  LA_SYM, XXXXXXX
   ),
-  ///
   /// ### NAV layer
   ///
   /// ```text
@@ -150,7 +150,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, _______,
                                           _______, _______, _______,    _______, _______, _______
   ),
-  ///
   /// ### SYMBOL layer
   ///
   /// ```text
@@ -169,7 +168,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                        KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, _______,
                                           _______, _______, _______,    _______, _______, _______
   ),
-  ///
   /// ### NUM layer
   ///
   /// ```text
