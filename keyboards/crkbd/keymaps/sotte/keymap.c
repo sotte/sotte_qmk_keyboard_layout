@@ -41,11 +41,15 @@ enum layer_names {
 };
 
 enum keycodes {
-  // oneshot keycodes without timers
+  // one shot keycodes without timers
   OS_SHFT = SAFE_RANGE,
   OS_CTRL,
   OS_ALT,
   OS_GUI,
+  // my special keys
+  MY_COPY,
+  MY_CUT,
+  MY_PSTE,
 };
 
 // aliases - mostly to keep the format/style consistent
@@ -102,6 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - [CAPS WORD](https://docs.qmk.fm/#/feature_caps_word)ewhen tapping shift twice
   /// - [Repeat key](https://docs.qmk.fm/#/feature_repeat_key) on right pinky bottom row
   /// - different characters on some shifted keys: `,?`, `.!`, `_-`, and `:;`.
+  /// - Copy, Cut, Paste keys (via `NAV` layer) that work in and outside of terminals
   ///
   /// ### Thumb cluster and layers
   ///
@@ -125,6 +130,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - ♦⌘: GUI one shot
   /// - ♦⌃: CTRL one shot
   /// - ♦⇧: SHFT one shot
+  /// - ♦x: cut (works in and outside of terminals)
+  /// - ♦c: copy (works in and outside of terminals)
+  /// - ♦v: paste (works in and outside of terminals)
   ///
   /// ### ALPHA layer
   ///
@@ -150,11 +158,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### NAV layer
   ///
   /// ```text
-  /// ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦ ⌫
-  /// ⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥ ↵
-  /// ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦3
+  /// ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫
+  /// ⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥  ↵
+  /// ⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 •  ♦.
   ///             •  ■  ↵  ♦⇧ ♦9 •
   /// ```
+  ///
   ///
   /// A fairly simple nav layer.
   ///
@@ -165,15 +174,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [NAV_L] = LAYOUT_split_3x6_3(
        KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, _______,
       KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
-      KC_LSFT, XXXXXXX,  KC_CUT,  CTRL_C,  CTRL_V, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, _______,
+      KC_LSFT, XXXXXXX,  MY_CUT, MY_COPY, MY_PSTE, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, _______,
                                           _______, _______, _______,    _______, _______, _______
   ),
   /// ### SYMBOL layer
   ///
   /// ```text
-  /// ES .  /  *  #  |        \  '  [  ]  : •
-  /// ⌃  !  -  +  =  ~        ^  "  (  )  $ •
-  /// ⇧  ,  <  >  %  &        @  `  {  }  _ •
+  /// ES .  /  *  #  |        \  '  [  ]  :  ⌫
+  /// ⌃  !  -  +  =  ~        ^  "  (  )  $  ↵
+  /// ⇧  ,  <  >  %  &        @  `  {  }  _  ♦.
   ///             •  ␣9 ↵  ♦⇧ ■  •
   /// ```
   ///
@@ -194,9 +203,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### NUM layer
   ///
   /// ```text
-  /// ES .  /  *  #  |        .  7  8  9  : •
-  /// ⌃  !  -  +  =  ~        0  4  5  6  0 •
-  /// ⇧  ,  <  >  %  &        ,  1  2  3  _ •
+  /// ES .  /  *  #  |        .  7  8  9  :  ⌫
+  /// ⌃  !  -  +  =  ~        0  4  5  6  0  ↵
+  /// ⇧  ,  <  >  %  &        ,  1  2  3  _  ♦.
   ///             •  ■  •  •  ■  •
   /// ```
   ///
@@ -413,6 +422,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   update_oneshot(&os_ctl_state, KC_LCTL, OS_CTRL, keycode, record);
   update_oneshot(&os_alt_state, KC_LALT, OS_ALT, keycode, record);
   update_oneshot(&os_gui_state, KC_LGUI, OS_GUI, keycode, record);
+
+  switch (keycode) {
+  case MY_COPY:
+    // Copy = Ctrl+Ins
+    if (record->event.pressed) { tap_code16(LCTL(KC_INS));}
+    return false;
+  case MY_CUT:
+    // Cut = Shift+Del
+    if (record->event.pressed) { tap_code16(LSFT(KC_DEL)); }
+    return false;
+  case MY_PSTE:
+    // Paste = Shift+Ins
+    if (record->event.pressed) { tap_code16(LSFT(KC_INS)); }
+    return false;
+  }
 
   return true;
 }

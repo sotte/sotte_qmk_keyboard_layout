@@ -25,6 +25,7 @@ I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-c
 - [CAPS WORD](https://docs.qmk.fm/#/feature_caps_word)ewhen tapping shift twice
 - [Repeat key](https://docs.qmk.fm/#/feature_repeat_key) on right pinky bottom row
 - different characters on some shifted keys: `,?`, `.!`, `_-`, and `:;`.
+- Copy, Cut, Paste keys (via `NAV` layer) that work in and outside of terminals
 
 ### Thumb cluster and layers
 
@@ -48,6 +49,9 @@ NUM:   .■.  .■.
 - ♦⌘: GUI one shot
 - ♦⌃: CTRL one shot
 - ♦⇧: SHFT one shot
+- ♦x: cut (works in and outside of terminals)
+- ♦c: copy (works in and outside of terminals)
+- ♦v: paste (works in and outside of terminals)
 
 ### ALPHA layer
 
@@ -67,11 +71,12 @@ and useful than the original ones:
 ### NAV layer
 
 ```text
-ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦ ⌫
-⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥ ↵
-⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦3
+ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫
+⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥  ↵
+⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 •  ♦.
             •  ■  ↵  ♦⇧ ♦9 •
 ```
+
 
 A fairly simple nav layer.
 
@@ -82,9 +87,9 @@ AGCS are callum style one-shot keys and can be used on other layers as well.
 ### SYMBOL layer
 
 ```text
-ES .  /  *  #  |        \  '  [  ]  : •
-⌃  !  -  +  =  ~        ^  "  (  )  $ •
-⇧  ,  <  >  %  &        @  `  {  }  _ •
+ES .  /  *  #  |        \  '  [  ]  :  ⌫
+⌃  !  -  +  =  ~        ^  "  (  )  $  ↵
+⇧  ,  <  >  %  &        @  `  {  }  _  ♦.
             •  ␣9 ↵  ♦⇧ ■  •
 ```
 
@@ -99,9 +104,9 @@ and adjusted slightly.
 ### NUM layer
 
 ```text
-ES .  /  *  #  |        .  7  8  9  : •
-⌃  !  -  +  =  ~        0  4  5  6  0 •
-⇧  ,  <  >  %  &        ,  1  2  3  _ •
+ES .  /  *  #  |        .  7  8  9  :  ⌫
+⌃  !  -  +  =  ~        0  4  5  6  0  ↵
+⇧  ,  <  >  %  &        ,  1  2  3  _  ♦.
             •  ■  •  •  ■  •
 ```
 
