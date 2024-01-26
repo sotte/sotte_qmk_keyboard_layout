@@ -15,42 +15,60 @@ Corne V3 hotswap with Frood RP2040 V8 MCU, akko ocean blue switches, and random 
 I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-cherry-v3-hotswap-split-ergo-40-kit/).
 
 <!-- REPLACE_MARKER_START -->
+### TL;DR: Features
+
+- 4 layers: `ALPHA` (colemak), `NAV`, `SYM`, `NUM`
+- only uses 4 thumb keys
+- callum style one-shot modifiers for most modifiers,
+  but especially useful for the modifiers on he home row in the `NAV` layer.
+  `⌥⌘⌃⇧` or alt/gui/ctrl/shift or AGSC.
+- [CAPS WORD](https://docs.qmk.fm/#/feature_caps_word)ewhen tapping shift twice
+- [Repeat key](https://docs.qmk.fm/#/feature_repeat_key) on right pinky bottom row
+- different characters on some shifted keys: `,?`, `.!`, `_-`, and `:;`.
+
 ### Thumb cluster and layers
 
+There are 4 layers and you use two thumb switches to select them.
+
 ```text
-NAV: ...  .■.
-SYM: .■.  ...
-NUM: .■.  .■.
+ALPHA: ...  ...
+NAV:   ...  .■.
+SYM:   .■.  ...
+NUM:   .■.  .■.
 ```
 
 ### Legend for special keys
 
-- ♦.: Repeat last key (or combo)
-- ♦⇧: One-shot shift
 - ␣N: space on press, NAV layer on hold
+- ♦.: Repeat last key (or combo)
 - ♦T: Ctrl-t / my tmux prefix
 - ♦S: SYM layer on press
 - ♦9: NUM layer on press
+- ♦⌥: ALT one shot
+- ♦⌘: GUI one shot
+- ♦⌃: CTRL one shot
+- ♦⇧: SHFT one shot
 
 ### ALPHA layer
 
 ```text
 ES qQ wW fF pP gG       jJ lL uU yY :; ⌫
-⌃  aA rR sS tT dD       hH nN eE iI oO ↵
+♦⌃ aA rR sS tT dD       hH nN eE iI oO ↵
 ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦.
             •  ␣N ↵  ♦⇧ ♦S •
 ```
 
-This is a almost standard colemak layout.
+This is almost a standard colemak layout.
 It contains different non-alpha characters (and different shifted versions)
-as they are quite common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies)):
+as the shifted versions are more common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies))
+and useful than the original ones:
 `,?`, `.!`, `_-`, and `:;`.
 
 ### NAV layer
 
 ```text
-ES Cq Cw Cf ♦T •        ↥  ⌫  ↑  ⌦  ⌦ ⌫
-⌃  A  G  C  S  Cd       ⇤  ←  ↓  →  ⇥ ↵
+ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦ ⌫
+⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥ ↵
 ⇧  •  Cx Cc Cv •        ↧  ↵  ⭾  ♦3 • ♦3
             •  ■  ↵  ♦⇧ ♦9 •
 ```
@@ -59,7 +77,7 @@ A fairly simple nav layer.
 
 Note: you can use AGSC on the left side to create complex arrow movements/selections
 and delete behavior.
-AGCS are one-shot keys and can be used on other layers as well.
+AGCS are callum style one-shot keys and can be used on other layers as well.
 
 ### SYMBOL layer
 
@@ -70,8 +88,13 @@ ES .  /  *  #  |        \  '  [  ]  : •
             •  ␣9 ↵  ♦⇧ ■  •
 ```
 
-Inspired by getreuer:
-https://getreuer.info/posts/keyboards/symbol-layer/index.html
+Inspired by [getreuer](https://getreuer.info/posts/keyboards/symbol-layer/index.html)
+and adjusted slightly.
+
+- `^$` mirror `HOME` and `END` on the `NAV` layer and are useful for vim movements.
+- Additional `.,` just because they are handy.
+- The location of `./` is handy for navigating directories.
+- `'"\`` in one column to ease memoization.
 
 ### NUM layer
 
@@ -83,8 +106,11 @@ ES .  /  *  #  |        .  7  8  9  : •
 ```
 
 The right side is the real NUM layer.
-The left side is the symbol layer really,
-but is should making working with the num layer comfortable.
+The left side mirrors the keys from the SYM layer which are quite useful for entering formulas.
+
+Issues:
+
+- `()` are not as easy to use as I would like.
 
 ### Symbols legend
 
