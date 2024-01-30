@@ -17,15 +17,15 @@ I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-c
 <!-- REPLACE_MARKER_START -->
 ### TL;DR: Features
 
-- 4 layers: `ALPHA` (colemak), `NAV`, `SYM`, `NUM`
-- only uses 4 thumb keys
-- callum style one-shot modifiers for most modifiers,
+- 4 layers: `ALPHA` (colemak), `NAV`, `SYM`, `NUM`.
+- Only uses 4 thumb keys.
+- Callum style one-shot modifiers for most modifiers,.
   but especially useful for the modifiers on he home row in the `NAV` layer.
   `⌥⌘⌃⇧` or alt/gui/ctrl/shift or AGSC.
-- [CAPS WORD](https://docs.qmk.fm/#/feature_caps_word)ewhen tapping shift twice
+- [CAPS WORD](https://docs.qmk.fm/#/feature_caps_word) when tapping shift twice.
 - [Repeat key](https://docs.qmk.fm/#/feature_repeat_key) on right pinky bottom row
-- different characters on some shifted keys: `,?`, `.!`, `_-`, and `:;`.
-- Copy, Cut, Paste keys (via `NAV` layer) that work in and outside of terminals
+- Different characters on some shifted keys: `,?`, `.!`, `_-`, and `:;`.
+- Copy, Cut, Paste keys (via `NAV` layer) that work in and outside of terminals.
 
 ### Thumb cluster and layers
 
@@ -40,18 +40,18 @@ NUM:   .■.  .■.
 
 ### Legend for special keys
 
-- ␣N: space on press, NAV layer on hold
-- ♦.: Repeat last key (or combo)
-- ♦T: Ctrl-t / my tmux prefix
-- ♦S: SYM layer on press
-- ♦9: NUM layer on press
-- ♦⌥: ALT one shot
-- ♦⌘: GUI one shot
-- ♦⌃: CTRL one shot
-- ♦⇧: SHFT one shot
-- ♦x: cut (works in and outside of terminals)
-- ♦c: copy (works in and outside of terminals)
-- ♦v: paste (works in and outside of terminals)
+- `␣N`: space on tab, NAV layer on hold
+- `♦.`: Repeat last key (or combo)
+- `♦T`: Ctrl-t / my tmux prefix
+- `♦S`: SYM layer on press
+- `♦9`: NUM layer on press
+- `♦⌥`: ALT one shot
+- `♦⌘`: GUI one shot
+- `♦⌃`: CTRL one shot
+- `♦⇧`: SHFT one shot
+- `♦x`: cut (works in and outside of terminals)
+- `♦c`: copy (works in and outside of terminals)
+- `♦v`: paste (works in and outside of terminals)
 
 ### ALPHA layer
 
@@ -80,7 +80,7 @@ ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫
 
 A fairly simple nav layer.
 
-Note: you can use AGSC on the left side to create complex arrow movements/selections
+Note: you can use AGCS on the left side to create complex arrow movements/selections
 and delete behavior.
 AGCS are callum style one-shot keys and can be used on other layers as well.
 
@@ -99,7 +99,7 @@ and adjusted slightly.
 - `^$` mirror `HOME` and `END` on the `NAV` layer and are useful for vim movements.
 - Additional `.,` just because they are handy.
 - The location of `./` is handy for navigating directories.
-- `'"\`` in one column to ease memoization.
+- ``' ` "`` in one column to ease memoization.
 
 ### NUM layer
 
@@ -110,8 +110,8 @@ ES .  /  *  #  |        .  7  8  9  :  ⌫
             •  ■  •  •  ■  •
 ```
 
-The right side is the real NUM layer.
-The left side mirrors the keys from the SYM layer which are quite useful for entering formulas.
+The right side is the real `NUM` layer.
+The left side mirrors the keys from the `SYM` layer which are quite useful for entering formulas.
 
 Issues:
 
