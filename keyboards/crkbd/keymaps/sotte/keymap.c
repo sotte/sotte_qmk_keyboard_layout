@@ -121,6 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ///
   /// ### Legend for special keys
   ///
+  /// - `•`: noop
   /// - `␣N`: space on tab, NAV layer on hold
   /// - `♦.`: Repeat last key (or combo)
   /// - `♦T`: Ctrl-t / my tmux prefix
@@ -140,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES qQ wW fF pP gG       jJ lL uU yY :; ⌫
   /// ♦⌃ aA rR sS tT dD       hH nN eE iI oO ↵
   /// ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦.
-  ///             •  ␣N ↵  ♦⇧ ♦S •
+  ///             •  ␣N ES  ♦⇧ ♦S •
   /// ```
   ///
   /// This is almost a standard colemak layout.
@@ -153,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
       OS_CTRL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  KC_ENT,
       OS_SHFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS,  QK_REP,
-                                          XXXXXXX, SPC_NAV,  KC_ENT,    OSM_SFT,  LA_SYM, XXXXXXX
+                                          XXXXXXX, SPC_NAV,  KC_ESC,    OSM_SFT,  LA_SYM, XXXXXXX
   ),
   /// ### NAV layer
   ///
@@ -161,7 +162,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫
   /// ⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥  ↵
   /// ⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 •  ♦.
-  ///             •  ■  ↵  ♦⇧ ♦9 •
+  ///             •  ■  ES ♦⇧ ♦9 •
   /// ```
   ///
   ///
@@ -183,7 +184,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ES .  /  *  #  |        \  '  [  ]  :  ⌫
   /// ⌃  !  -  +  =  ~        ^  "  (  )  $  ↵
   /// ⇧  ,  <  >  %  &        @  `  {  }  _  ♦.
-  ///             •  ␣9 ↵  ♦⇧ ■  •
+  ///             •  ␣9 ES ♦⇧ ■  •
   /// ```
   ///
   /// Inspired by [getreuer](https://getreuer.info/posts/keyboards/symbol-layer/index.html)

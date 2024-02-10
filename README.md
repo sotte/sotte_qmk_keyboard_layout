@@ -40,6 +40,7 @@ NUM:   .■.  .■.
 
 ### Legend for special keys
 
+- `•`: noop
 - `␣N`: space on tab, NAV layer on hold
 - `♦.`: Repeat last key (or combo)
 - `♦T`: Ctrl-t / my tmux prefix
@@ -59,7 +60,7 @@ NUM:   .■.  .■.
 ES qQ wW fF pP gG       jJ lL uU yY :; ⌫
 ♦⌃ aA rR sS tT dD       hH nN eE iI oO ↵
 ♦⇧ zZ xX cC vV bB       kK mM ,? .! _- ♦.
-            •  ␣N ↵  ♦⇧ ♦S •
+            •  ␣N ES  ♦⇧ ♦S •
 ```
 
 This is almost a standard colemak layout.
@@ -74,7 +75,7 @@ and useful than the original ones:
 ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫
 ⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥  ↵
 ⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 •  ♦.
-            •  ■  ↵  ♦⇧ ♦9 •
+            •  ■  ES ♦⇧ ♦9 •
 ```
 
 
@@ -90,7 +91,7 @@ AGCS are callum style one-shot keys and can be used on other layers as well.
 ES .  /  *  #  |        \  '  [  ]  :  ⌫
 ⌃  !  -  +  =  ~        ^  "  (  )  $  ↵
 ⇧  ,  <  >  %  &        @  `  {  }  _  ♦.
-            •  ␣9 ↵  ♦⇧ ■  •
+            •  ␣9 ES ♦⇧ ■  •
 ```
 
 Inspired by [getreuer](https://getreuer.info/posts/keyboards/symbol-layer/index.html)
