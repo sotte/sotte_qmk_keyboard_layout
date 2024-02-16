@@ -124,6 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - `•`: noop
   /// - `␣N`: space on tab, NAV layer on hold
   /// - `♦.`: Repeat last key (or combo)
+  /// - `♦A`: application (context menu)
   /// - `♦T`: Ctrl-t / my tmux prefix
   /// - `♦S`: SYM layer on press
   /// - `♦9`: NUM layer on press
@@ -148,7 +149,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// It contains different non-alpha characters (and different shifted versions)
   /// as the shifted versions are more common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies))
   /// and useful than the original ones:
-  /// `,?`, `.!`, `_-`, and `:;`.
   ///
   [ALPHA_L] = LAYOUT_split_3x6_3(
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
@@ -161,10 +161,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ```text
   /// ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫
   /// ⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥  ↵
-  /// ⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 •  ♦.
+  /// ⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 ♦A ♦.
   ///             •  ■  ES ♦⇧ ♦9 •
   /// ```
-  ///
   ///
   /// A fairly simple nav layer.
   ///
@@ -175,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [NAV_L] = LAYOUT_split_3x6_3(
        KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, _______,
       KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
-      KC_LSFT, XXXXXXX,  MY_CUT, MY_COPY, MY_PSTE, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP, XXXXXXX, _______,
+      KC_LSFT, XXXXXXX,  MY_CUT, MY_COPY, MY_PSTE, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP,  KC_APP, _______,
                                           _______, _______, _______,    _______, _______, _______
   ),
   /// ### SYMBOL layer

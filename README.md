@@ -43,6 +43,7 @@ NUM:   .■.  .■.
 - `•`: noop
 - `␣N`: space on tab, NAV layer on hold
 - `♦.`: Repeat last key (or combo)
+- `♦A`: application (context menu)
 - `♦T`: Ctrl-t / my tmux prefix
 - `♦S`: SYM layer on press
 - `♦9`: NUM layer on press
@@ -67,17 +68,15 @@ This is almost a standard colemak layout.
 It contains different non-alpha characters (and different shifted versions)
 as the shifted versions are more common ([ref](https://getreuer.info/posts/keyboards/symbol-layer/index.html#symbol-character-frequencies))
 and useful than the original ones:
-`,?`, `.!`, `_-`, and `:;`.
 
 ### NAV layer
 
 ```text
 ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫
 ⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥  ↵
-⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 •  ♦.
+⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 ♦A ♦.
             •  ■  ES ♦⇧ ♦9 •
 ```
-
 
 A fairly simple nav layer.
 
