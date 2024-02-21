@@ -1,12 +1,15 @@
 # `sotte` keyboard layouts
 
 This repo contains my keyboard layouts.
-It is a qmk_userspace repo, see [README_qmk_userspace.md](README_qmk_userspace.md) for details.
+(It is a qmk_userspace repo, see [README_qmk_userspace.md](README_qmk_userspace.md) for details.)
 
 ## Corne with colemak layout
 
+![corne](assets/corne_1980.jpg)
+See [assets/](assets/) for more images.
+
 I use colemak with some modifications.
-It is inspired by miryoku, getreuer, callum, seniply, and others.
+The layout is inspired by miryoku, getreuer, callum, seniply, and others.
 See references below.
 
 ### Hardware
