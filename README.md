@@ -29,6 +29,7 @@ I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-c
 - [Repeat key](https://docs.qmk.fm/#/feature_repeat_key) on right pinky bottom row
 - Different characters on some shifted keys: `,?`, `.!`, `_-`, and `:;`.
 - Copy, Cut, Paste keys (via `NAV` layer) that work in and outside of terminals.
+- Layer lock for `SYM`, `NUM`, and `NAV` layers via the right pinky (top row).
 
 ### Thumb cluster and layers
 

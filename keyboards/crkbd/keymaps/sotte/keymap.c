@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include "features/custom_shift_keys.h"
 #include "features/oneshot.h"
+#include "features/layer_lock.h"
 // #include "features/achordion.h"
 
 // Home row mods - currently not used
@@ -46,6 +47,8 @@ enum keycodes {
   OS_CTRL,
   OS_ALT,
   OS_GUI,
+  // Misc
+  LLOCK,
   // my special keys
   MY_COPY,
   MY_CUT,
@@ -107,6 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - [Repeat key](https://docs.qmk.fm/#/feature_repeat_key) on right pinky bottom row
   /// - Different characters on some shifted keys: `,?`, `.!`, `_-`, and `:;`.
   /// - Copy, Cut, Paste keys (via `NAV` layer) that work in and outside of terminals.
+  /// - [Layer lock](https://getreuer.info/posts/keyboards/layer-lock/index.html) for `SYM`, `NUM`, and `NAV` layers via the right pinky (top row).
   ///
   /// ### Thumb cluster and layers
   ///
@@ -122,19 +126,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### Legend for special keys
   ///
   /// - `•`: noop
-  /// - `␣N`: space on tab, NAV layer on hold
+  /// - `␣N`: Space on tab, NAV layer on hold
   /// - `♦.`: Repeat last key (or combo)
-  /// - `♦A`: application (context menu)
-  /// - `♦T`: Ctrl-t / my tmux prefix
-  /// - `♦S`: SYM layer on press
   /// - `♦9`: NUM layer on press
-  /// - `♦⌥`: ALT one shot
-  /// - `♦⌘`: GUI one shot
+  /// - `♦A`: Application (context menu)
+  /// - `♦L`: Toggle layer lock
+  /// - `♦S`: SYM layer on press
+  /// - `♦T`: Ctrl-t / my tmux prefix
+  /// - `♦c`: Copy (works in and outside of terminals)
+  /// - `♦v`: Paste (works in and outside of terminals)
+  /// - `♦x`: Cut (works in and outside of terminals)
+  /// - `♦⇧`: SHIFT one shot
   /// - `♦⌃`: CTRL one shot
-  /// - `♦⇧`: SHFT one shot
-  /// - `♦x`: cut (works in and outside of terminals)
-  /// - `♦c`: copy (works in and outside of terminals)
-  /// - `♦v`: paste (works in and outside of terminals)
+  /// - `♦⌘`: GUI one shot
+  /// - `♦⌥`: ALT one shot
   ///
   /// ### ALPHA layer
   ///
@@ -159,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### NAV layer
   ///
   /// ```text
-  /// ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫
+  /// ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ♦L
   /// ⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥  ↵
   /// ⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 ♦A ♦.
   ///             •  ■  ES ♦⇧ ♦9 •
@@ -172,7 +177,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// AGCS are callum style one-shot keys and can be used on other layers as well.
   ///
   [NAV_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL, _______,
+       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL,   LLOCK,
       KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
       KC_LSFT, XXXXXXX,  MY_CUT, MY_COPY, MY_PSTE, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP,  KC_APP, _______,
                                           _______, _______, _______,    _______, _______, _______
@@ -180,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### SYMBOL layer
   ///
   /// ```text
-  /// ES .  /  *  #  |        \  '  [  ]  :  ⌫
+  /// ES .  /  *  #  |        \  '  [  ]  :  ♦L
   /// ⌃  !  -  +  =  ~        ^  "  (  )  $  ↵
   /// ⇧  ,  <  >  %  &        @  `  {  }  _  ♦.
   ///             •  ␣9 ES ♦⇧ ■  •
@@ -195,7 +200,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - ``' ` "`` in one column to ease memoization.
   ///
   [SYM_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                      KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN, _______,
+       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                      KC_BSLS, KC_QUOT, KC_LBRC, KC_RBRC, KC_COLN,   LLOCK,
       KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                      KC_CIRC,  KC_DQT, KC_LPRN, KC_RPRN,  KC_DLR, _______,
       KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                        KC_AT,  KC_GRV, KC_LCBR, KC_RCBR, KC_UNDS, _______,
                                           _______, _______, _______,    _______, _______, _______
@@ -203,7 +208,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// ### NUM layer
   ///
   /// ```text
-  /// ES .  /  *  #  |        .  7  8  9  :  ⌫
+  /// ES .  /  *  #  |        .  7  8  9  :  ♦L
   /// ⌃  !  -  +  =  ~        0  4  5  6  0  ↵
   /// ⇧  ,  <  >  %  &        ,  1  2  3  _  ♦.
   ///             •  ■  •  •  ■  •
@@ -217,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /// - `()` are not as easy to use as I would like.
   ///
   [NUM_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                       KC_DOT,    KC_7,    KC_8,    KC_9, KC_COLN, _______,
+       KC_ESC,  KC_DOT, KC_SLSH, KC_ASTR, KC_HASH, KC_PIPE,                       KC_DOT,    KC_7,    KC_8,    KC_9, KC_COLN,   LLOCK,
       KC_LCTL, KC_EXLM, KC_MINS, KC_PLUS, KC_EQL,  KC_TILD,                         KC_0,    KC_4,    KC_5,    KC_6,    KC_0, _______,
       KC_LSFT, KC_COMM, KC_LABK, KC_RABK, KC_PERC, KC_AMPR,                      KC_COMM,    KC_1,    KC_2,    KC_3, KC_UNDS, _______,
                                           _______, _______, _______,    _______, _______, _______
@@ -415,6 +420,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_custom_shift_keys(keycode, record)) {
+    return false;
+  }
+  if (!process_layer_lock(keycode, record, LLOCK)) {
     return false;
   }
 
