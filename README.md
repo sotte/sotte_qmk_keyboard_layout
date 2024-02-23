@@ -29,7 +29,7 @@ I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-c
 - [Repeat key](https://docs.qmk.fm/#/feature_repeat_key) on right pinky bottom row
 - Different characters on some shifted keys: `,?`, `.!`, `_-`, and `:;`.
 - Copy, Cut, Paste keys (via `NAV` layer) that work in and outside of terminals.
-- Layer lock for `SYM`, `NUM`, and `NAV` layers via the right pinky (top row).
+- [Layer lock](https://getreuer.info/posts/keyboards/layer-lock/index.html) for `SYM`, `NUM`, and `NAV` layers via the right pinky (top row).
 
 ### Thumb cluster and layers
 
@@ -45,19 +45,20 @@ NUM:   .■.  .■.
 ### Legend for special keys
 
 - `•`: noop
-- `␣N`: space on tab, NAV layer on hold
+- `␣N`: Space on tab, NAV layer on hold
 - `♦.`: Repeat last key (or combo)
-- `♦A`: application (context menu)
-- `♦T`: Ctrl-t / my tmux prefix
-- `♦S`: SYM layer on press
 - `♦9`: NUM layer on press
-- `♦⌥`: ALT one shot
-- `♦⌘`: GUI one shot
+- `♦A`: Application (context menu)
+- `♦L`: Toggle layer lock
+- `♦S`: SYM layer on press
+- `♦T`: Ctrl-t / my tmux prefix
+- `♦c`: Copy (works in and outside of terminals)
+- `♦v`: Paste (works in and outside of terminals)
+- `♦x`: Cut (works in and outside of terminals)
+- `♦⇧`: SHIFT one shot
 - `♦⌃`: CTRL one shot
-- `♦⇧`: SHFT one shot
-- `♦x`: cut (works in and outside of terminals)
-- `♦c`: copy (works in and outside of terminals)
-- `♦v`: paste (works in and outside of terminals)
+- `♦⌘`: GUI one shot
+- `♦⌥`: ALT one shot
 
 ### ALPHA layer
 
@@ -76,7 +77,7 @@ and useful than the original ones:
 ### NAV layer
 
 ```text
-ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫
+ES ⌃q ⌃w ⌃f ♦T •        ↥  ⌫  ↑  ⌦  ⌦  ⌫♦L
 ⌃  ♦⌥ ♦⌘ ♦⌃ ♦⇧ ⌃d       ⇤  ←  ↓  →  ⇥  ↵
 ⇧  •  ♦x ♦c ♦v •        ↧  ↵  ⭾  ♦3 ♦A ♦.
             •  ■  ES ♦⇧ ♦9 •
@@ -91,7 +92,7 @@ AGCS are callum style one-shot keys and can be used on other layers as well.
 ### SYMBOL layer
 
 ```text
-ES .  /  *  #  |        \  '  [  ]  :  ⌫
+ES .  /  *  #  |        \  '  [  ]  :  ♦L
 ⌃  !  -  +  =  ~        ^  "  (  )  $  ↵
 ⇧  ,  <  >  %  &        @  `  {  }  _  ♦.
             •  ␣9 ES ♦⇧ ■  •
@@ -108,7 +109,7 @@ and adjusted slightly.
 ### NUM layer
 
 ```text
-ES .  /  *  #  |        .  7  8  9  :  ⌫
+ES .  /  *  #  |        .  7  8  9  :  ♦L
 ⌃  !  -  +  =  ~        0  4  5  6  0  ↵
 ⇧  ,  <  >  %  &        ,  1  2  3  _  ♦.
             •  ■  •  •  ■  •
