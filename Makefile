@@ -14,6 +14,13 @@ compile: README.md
 flash: README.md
 	make crkbd:sotte:flash
 
+.PHONY: flashc
+flashc: README.md
+	make crkbd:sotte_callum:flash
+
+.PHONY: flashs
+flashc: README.md
+	make crkbd:sotte_simple:flash
 
 QMK_USERSPACE := $(patsubst %/,%,$(dir $(shell realpath "$(lastword $(MAKEFILE_LIST))")))
 ifeq ($(QMK_USERSPACE),)
