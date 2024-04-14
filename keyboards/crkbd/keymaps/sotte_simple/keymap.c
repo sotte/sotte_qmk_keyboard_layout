@@ -82,6 +82,7 @@ const custom_shift_key_t custom_shift_keys[] = {
   {KC_COLN, KC_SCLN}, // Shift : is ;
   {KC_UNDS, KC_EQL}, // Shift _ is -
   {KC_MINS, KC_PLUS }, // Shift - is +
+  {KC_DQUO, KC_QUOT }, // Shift " is +
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
