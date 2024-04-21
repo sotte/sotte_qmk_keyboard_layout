@@ -79,10 +79,11 @@ enum keycodes {
 const custom_shift_key_t custom_shift_keys[] = {
   // {KC_COMM, KC_QUES}, // Shift , is ?
   // {KC_DOT , KC_EXLM}, // Shift . is !
-  {KC_COLN, KC_SCLN}, // Shift : is ;
-  {KC_UNDS, KC_EQL}, // Shift _ is -
+  {KC_COLN, KC_SCLN},  // Shift : is ;
+  {KC_UNDS, KC_EQL},   // Shift _ is -
   {KC_MINS, KC_PLUS }, // Shift - is +
-  {KC_DQUO, KC_QUOT }, // Shift " is +
+  {KC_DQUO, KC_QUOT }, // Shift " is '
+  {KC_TILD, KC_GRV },  // Shift ~ is
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
@@ -107,9 +108,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                           _______, _______, _______,    _______, _______, _______
   ),
   [SYM_L] = LAYOUT_split_3x6_3(
-       KC_ESC, KC_SLSH,    KC_1,    KC_2,    KC_3, KC_TILD,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK,
+       KC_ESC, KC_SLSH,    KC_7,    KC_8,    KC_9,    KC_0,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK,
       KC_LCTL, KC_LBRC,    KC_4,    KC_5,    KC_6, KC_RBRC,                      XXXXXXX, OS_SHFT, OS_CTRL,  OS_GUI,  OS_ALT, _______,
-      KC_LSFT, KC_BSLS,    KC_7,    KC_8,    KC_9,    KC_0,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+      KC_LSFT, KC_BSLS,    KC_1,    KC_2,    KC_3, KC_TILD,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
                                           _______, KC_UNDS, KC_MINS,    _______, _______, _______
   ),
 };
