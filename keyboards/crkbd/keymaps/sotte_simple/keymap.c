@@ -79,11 +79,11 @@ enum keycodes {
 const custom_shift_key_t custom_shift_keys[] = {
   // {KC_COMM, KC_QUES}, // Shift , is ?
   // {KC_DOT , KC_EXLM}, // Shift . is !
+  // {KC_DQUO, KC_QUOT }, // Shift " is '
   {KC_COLN, KC_SCLN},  // Shift : is ;
   {KC_UNDS, KC_EQL},   // Shift _ is -
-  {KC_MINS, KC_PLUS }, // Shift - is +
-  {KC_DQUO, KC_QUOT }, // Shift " is '
-  {KC_TILD, KC_GRV },  // Shift ~ is
+  {KC_MINS, KC_PLUS},  // Shift - is +
+  {KC_TILD, KC_GRV},   // Shift ~ is
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [ALPHA_L] = LAYOUT_split_3x6_3(
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
       OS_CTRL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  KC_ENT,
-      OS_SHFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_DQUO,  QK_REP,
+      OS_SHFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_QUOT,  QK_REP,
                                           XXXXXXX, SPC_NAV,  KC_ESC,    OSM_SFT,  LA_SYM, XXXXXXX
   ),
   // [SYM_L] = LAYOUT_split_3x6_3(
