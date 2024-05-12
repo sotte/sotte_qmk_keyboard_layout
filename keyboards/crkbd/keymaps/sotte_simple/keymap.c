@@ -77,13 +77,14 @@ enum keycodes {
 
 // custom shift keys
 const custom_shift_key_t custom_shift_keys[] = {
-  // {KC_COMM, KC_QUES}, // Shift , is ?
-  // {KC_DOT , KC_EXLM}, // Shift . is !
-  // {KC_DQUO, KC_QUOT }, // Shift " is '
   {KC_COLN, KC_SCLN},  // Shift : is ;
-  {KC_UNDS, KC_EQL},   // Shift _ is -
-  {KC_MINS, KC_PLUS},  // Shift - is +
-  {KC_TILD, KC_GRV},   // Shift ~ is
+  {KC_DOT , KC_COMM},  // Shift . is ,
+  {KC_DQUO, KC_QUOT},  // Shift " is '
+  {KC_UNDS, KC_MINS},  // Shift _ is -
+  {KC_TILD, KC_GRV},   // Shift ~ is `
+  {KC_EQL, KC_PLUS},   // Shift = is +
+  {KC_LPRN, KC_LT},    // Shift ( is <
+  {KC_RPRN, KC_GT},    // Shift ) is >
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
@@ -91,27 +92,21 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [ALPHA_L] = LAYOUT_split_3x6_3(
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
-      OS_CTRL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  KC_ENT,
-      OS_SHFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_QUOT,  QK_REP,
+      KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  KC_ENT,
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_DQUO,  KC_DOT, KC_UNDS,  QK_REP,
                                           XXXXXXX, SPC_NAV,  KC_ESC,    OSM_SFT,  LA_SYM, XXXXXXX
   ),
-  // [SYM_L] = LAYOUT_split_3x6_3(
-  //      KC_ESC, KC_TILD, KC_LCBR, KC_LBRC, KC_LPRN, KC_LABK,                      KC_RABK, KC_RPRN, KC_RBRC, KC_RCBR, KC_UNDS,   LLOCK,
-  //     KC_LCTL, KC_MINS, KC_ASTR,  KC_EQL, KC_UNDS,  KC_DLR,                      KC_CIRC, OS_SHFT, OS_CTRL,  OS_GUI,  OS_ALT, _______,
-  //     KC_LSFT, KC_PLUS, KC_PIPE,   KC_AT, KC_SLSH, KC_PERC,                      KC_HASH, KC_BSLS, KC_DQUO, KC_QUOT,  KC_GRV, _______,
-  //                                         _______, _______, _______,    _______, _______, _______
-  // ),
+  [SYM_L] = LAYOUT_split_3x6_3(
+       KC_ESC, KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,                      XXXXXXX, XXXXXXX, KC_BSLS, XXXXXXX, _______,   LLOCK,
+      KC_LCTL, KC_TILD,    KC_4,    KC_5,    KC_6,  KC_EQL,                      XXXXXXX, OS_SHFT, OS_CTRL,  OS_GUI,  OS_ALT, _______,
+      KC_LSFT, KC_SLSH,    KC_1,    KC_2,    KC_3,    KC_0,                      XXXXXXX, XXXXXXX, _______, _______, _______, _______,
+                                          _______, KC_LPRN, KC_RPRN,    _______, _______, _______
+  ),
   [NAV_L] = LAYOUT_split_3x6_3(
        KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL,   LLOCK,
       KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
       KC_LSFT, XXXXXXX,  MY_CUT, MY_COPY, MY_PSTE, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP,  KC_APP, _______,
                                           _______, _______, _______,    _______, _______, _______
-  ),
-  [SYM_L] = LAYOUT_split_3x6_3(
-       KC_ESC, KC_SLSH,    KC_7,    KC_8,    KC_9,    KC_0,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK,
-      KC_LCTL, KC_LBRC,    KC_4,    KC_5,    KC_6, KC_RBRC,                      XXXXXXX, OS_SHFT, OS_CTRL,  OS_GUI,  OS_ALT, _______,
-      KC_LSFT, KC_BSLS,    KC_1,    KC_2,    KC_3, KC_TILD,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
-                                          _______, KC_UNDS, KC_MINS,    _______, _______, _______
   ),
 };
 
