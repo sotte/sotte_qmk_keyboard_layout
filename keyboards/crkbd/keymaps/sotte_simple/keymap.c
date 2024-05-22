@@ -66,10 +66,10 @@ enum keycodes {
 // #define BSP_SYM  LT(SYM_L, KC_BSPC)
 // #define DEL_FUNC LT(FUNC_L, KC_DEL)
 // #define ENT_NUM  LT(NUM_ALT_L, KC_ENT)
-// #define ESC_NAV  LT(NAV_L, KC_ESC)
 // #define ESC_NUM  LT(NUM_L, KC_ESC)
 // #define ESC_SYM  LT(SYM_L, KC_ESC)
 #define SPC_NAV  LT(NAV_L, KC_SPC)
+#define ESC_NAV  LT(NAV_L, KC_ESC)
 // #define SPC_SYM  LT(SYM_ALT_L, KC_SPC)
 // #define SPC_NUM  LT(NUM_ALT_L, KC_SPC)
 // #define TAB_MOU  LT(MOUSE_L, KC_TAB)
@@ -94,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_ESC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, KC_BSPC,
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, KC_DQUO,
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS,  QK_REP,
-                                          XXXXXXX, SPC_NAV,  KC_ESC,    OSM_SFT,  LA_SYM, XXXXXXX
+                                          XXXXXXX, SPC_NAV, ESC_NAV,    OSM_SFT,  LA_SYM, XXXXXXX
   ),
   [SYM_L] = LAYOUT_split_3x6_3(
        KC_ESC, KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,                      XXXXXXX, XXXXXXX, KC_BSLS, XXXXXXX, _______,   LLOCK,
@@ -104,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //                                                                         ^^^^^^^
   ),
   [NAV_L] = LAYOUT_split_3x6_3(
-       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, XXXXXXX,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL,   LLOCK,
+       KC_ESC,  CTRL_Q,  CTRL_W,  CTRL_F,  CTRL_T, KC_PSCR,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL,   LLOCK,
       KC_LCTL,  OS_ALT,  OS_GUI, OS_CTRL, OS_SHFT,  CTRL_D,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
       KC_LSFT, XXXXXXX,  MY_CUT, MY_COPY, MY_PSTE, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP,  KC_APP, _______,
                                           _______, _______, _______,    _______, _______, _______
