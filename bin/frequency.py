@@ -1,40 +1,95 @@
 """Frequency of characters for the given files."""
-from pathlib import Path
-from collections import Counter
+
+from collections.abc import Callable
+import string
+import itertools
 import sys
+from collections import Counter
+from pathlib import Path
+from rich.progress import track
 
 
-def count_chars(files) -> Counter:
-    c = Counter()
-    for f in files:
+def count_chars(files) -> tuple[Counter, Counter]:
+    char_counter = Counter()
+    bigram_counter = Counter()
+
+    for f in track(files, description="Counting..."):
         p = Path(f)
         if p.is_file():
-            c.update(Counter(p.read_text().lower()))
-    return c
+            text = p.read_text().lower()
+            char_counter.update(text)
+            # bigram_counter.update(map(lambda t: t[0] + t[1], itertools.pairwise(text)))
+            bigram_counter.update((text[i : i + 2] for i in range(len(text) - 1)))
+
+    return char_counter, bigram_counter
 
 
-def print_stats(c: Counter, filter):
-    tmp = [(k, v) for k, v in c.items() if filter(k)]
+def print_stats(
+    counter: Counter, predicate: Callable[[str], bool], topk: int = 1000
+) -> None:
+    tmp = [(k, v) for k, v in counter.items() if predicate(k)]
     total_chars = sum([v for _, v in tmp])
     tmp = [(k, v / total_chars) for k, v in tmp]
     tmp = sorted(tmp, key=lambda x: x[1], reverse=True)
-    for k, v in tmp:
-        print(f"{k}: {v:.3%}")
+
+    for i, (k, v) in enumerate(tmp[:topk]):
+        k = k.replace(" ", "󱁐")
+        k = k.replace("\n", "")
+        k = k.replace("\t", "")
+        print(f"{i:<4}{k}    {v:.2%}")
 
 
-if __name__ == "__main__":
+def main():
     files = sys.argv[1:]
     print(f"Counting characters in {len(files)} files: {files}")
 
-    c = count_chars(files)
+    char_counter, bigram_counter = count_chars(files)
+
+    print("BIGRAMS just alpha")
+    print_stats(
+        bigram_counter,
+        predicate=lambda k: len(set(k).intersection(string.ascii_lowercase)) == 2,
+        topk=30,
+    )
+    print()
+
+    print("BIGRAMS without alpha keys")
+    print_stats(
+        bigram_counter,
+        predicate=lambda k: k not in ("  ", "\n ", "\n\n")
+        and not bool(set(k).intersection(string.ascii_lowercase)),
+        topk=60,
+    )
+    print()
+
+    print("BIGRAMS without alphanum and whitespace")
+    print_stats(
+        bigram_counter,
+        predicate=lambda k: not bool(
+            set(k).intersection(
+                string.ascii_lowercase + string.digits + string.whitespace
+            )
+        ),
+        topk=60,
+    )
+    print()
+
+    print("ALL")
+    print_stats(char_counter, predicate=lambda _: True, topk=60)
+    print()
 
     print("ALPHA")
-    print_stats(c, filter=lambda x: x.isalpha())
-
+    print_stats(char_counter, predicate=lambda x: x.isalpha(), topk=60)
     print()
+
     print("DIGIT")
-    print_stats(c, filter=lambda x: x.isdigit())
-
+    print_stats(char_counter, predicate=lambda x: x.isdigit(), topk=60)
     print()
+
     print("OTHER")
-    print_stats(c, filter=lambda x: not x.isalnum())
+    print_stats(char_counter, predicate=lambda x: not x.isalnum(), topk=60)
+    print()
+
+
+if __name__ == "__main__":
+    main()
