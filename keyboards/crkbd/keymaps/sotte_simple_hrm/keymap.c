@@ -36,7 +36,7 @@ enum keycodes {
 // layers
 // #define LA_NAV  MO(NAV_L)
 // #define LA_SYM  MO(SYM_L)
-// #define LA_NUM  MO(NUM_L)
+#define LA_NUM  MO(NUM_L)
 // Layer tabs
 #define SPC_NAV  LT(NAV_L, KC_SPC)
 #define ESC_NAV  LT(NAV_L, KC_ESC)
@@ -82,7 +82,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [ALPHA_L] = LAYOUT_split_3x6_3(
       XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, XXXXXXX,
-      XXXXXXX,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, XXXXXXX,
+       LA_NUM,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, XXXXXXX,
       XXXXXXX,   Z_BRM,   X_BRM,   C_BRM,   V_BRM,    KC_B,                         KC_K,   M_BRM, COM_BRM, DOT_BRM, KC_UNDS, XXXXXXX,
                                           TAB_NUM, SPC_NAV,  ESC_NAV,   OSM_SFT, ENT_SYM,  KC_TAB
   ),
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_ASTR,    KC_7,    KC_8,    KC_9, KC_PLUS,   LLOCK,
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       KC_EQL,    KC_4,    KC_5,    KC_6, KC_MINS, _______,
       _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, XXXXXXX,                         KC_0,    KC_1,    KC_2,    KC_3, KC_SLSH, _______,
-                                          _______, XXXXXXX, XXXXXXX,    _______,  KC_SPC,  KC_DOT
+                                          _______,  KC_SPC, XXXXXXX,    _______,  KC_SPC,  KC_DOT
       //                                  ^^^^^^^
   ),
   [NAV_L] = LAYOUT_split_3x6_3(
