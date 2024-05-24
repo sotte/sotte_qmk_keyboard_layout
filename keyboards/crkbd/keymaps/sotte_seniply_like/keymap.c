@@ -40,6 +40,7 @@ enum keycodes {
 // Layer tabs
 #define SPC_NAV  LT(_NAV, KC_SPC)
 #define ESC_NAV  LT(_NAV, KC_ESC)
+#define ESC_NUM  LT(_NUM, KC_ESC)
 #define ENT_SYM  LT(_SYM, KC_ENT)
 #define TAB_NUM  LT(_NUM, KC_TAB)
 
@@ -80,13 +81,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, XXXXXXX,
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, XXXXXXX,
       XXXXXXX,   Z_BRM,   X_BRM,   C_BRM,   V_BRM,    KC_B,                         KC_K,   M_BRM, COM_BRM, DOT_BRM, KC_UNDS, XXXXXXX,
-                                          KC_LCTL, SPC_NAV,  KC_ESC,    OSM_SFT, ENT_SYM,  XXXXXXX
+                                          KC_LCTL, SPC_NAV, ESC_NUM,    OSM_SFT, ENT_SYM,  KC_TAB
   ),
   [_SYM] = LAYOUT_split_3x6_3(
       _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_ASTR,  KC_DQUO, KC_QUOT, KC_GRV, KC_PLUS,   LLOCK,
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_CIRC,                       KC_EQL, KC_LPRN, KC_LBRC, KC_LCBR, KC_MINS, _______,
       _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, KC_AMPR,                      KC_TILD, KC_RPRN, KC_RBRC, KC_RCBR, KC_SLSH, _______,
-                                          _______,  MO_NUM, _______,    _______, _______, XXXXXXX
+                                          _______,  MO_NUM, _______,    _______, _______, _______
       //                                                                         ^^^^^^^
   ),
   [_NAV] = LAYOUT_split_3x6_3(
