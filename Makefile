@@ -26,6 +26,10 @@ flashs: README.md
 flashhrm: README.md
 	make crkbd:sotte_simple_hrm:flash
 
+.PHONY: flashseniply
+flashseniply: README.md
+	make crkbd:sotte_seniply_like:flash
+
 QMK_USERSPACE := $(patsubst %/,%,$(dir $(shell realpath "$(lastword $(MAKEFILE_LIST))")))
 ifeq ($(QMK_USERSPACE),)
     QMK_USERSPACE := $(shell pwd)
