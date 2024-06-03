@@ -37,10 +37,11 @@ enum keycodes {
 #define MO_NAV   MO(_NAV)
 #define MO_SYM   MO(_SYM)
 #define MO_NUM   MO(_NUM)
-// Layer tabs
+// Layer taps and modifier taps
 #define SPC_NAV  LT(_NAV, KC_SPC)
 #define ESC_NAV  LT(_NAV, KC_ESC)
 #define ESC_NUM  LT(_NUM, KC_ESC)
+#define ESC_CTR  MT(MOD_LCTL, KC_ESC)
 #define ENT_SYM  LT(_SYM, KC_ENT)
 #define TAB_NUM  LT(_NUM, KC_TAB)
 // volume
@@ -85,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, XXXXXXX,
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O, XXXXXXX,
       XXXXXXX,   Z_BRM,   X_BRM,   C_BRM,   V_BRM,    KC_B,                         KC_K,   M_BRM, COM_BRM, DOT_BRM, KC_UNDS, XXXXXXX,
-                                          KC_LCTL, SPC_NAV,  KC_ESC,    OSM_SFT, ENT_SYM,  KC_TAB
+                                          KC_LCTL, SPC_NAV, ESC_CTR,    OSM_SFT, ENT_SYM,  KC_TAB
   ),
   [_NAV] = LAYOUT_split_3x6_3(
       _______, VOL_MUT, VOL_DWN,  VOL_UP, KC_PSCR, KC_PSCR,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL,   LLOCK,
