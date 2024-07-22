@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX,    TH_Q,    TH_W,    TH_F,    TH_P,    TH_G,                         TH_J,    TH_L,    TH_U,    TH_Y, KC_COLN, XXXXXXX,
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  QK_REP,
       XXXXXXX,   Z_BRM,   X_BRM,   C_BRM,   V_BRM,    KC_B,                         KC_K,   M_BRM, COM_BRM, DOT_BRM, KC_UNDS, XXXXXXX,
-                                           KC_TAB, SPC_NAV, ESC_CTR,    OSM_SFT, ENT_SYM, _______
+                                           KC_TAB, SPC_NAV, ESC_CTR,    OSM_SFT, ENT_SYM,  KC_TAB
   ),
   [_NAV] = LAYOUT_split_3x6_3(
       _______, VOL_MUT, VOL_DWN,  VOL_UP, KC_PSCR, KC_PSCR,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL,   LLOCK,
