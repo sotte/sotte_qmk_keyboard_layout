@@ -2,14 +2,13 @@
 
 from collections.abc import Callable
 import string
-import itertools
 import sys
 from collections import Counter
 from pathlib import Path
 from rich.progress import track
 
 
-def count_chars(files) -> tuple[Counter, Counter]:
+def count_chars(files: list[str]) -> tuple[Counter, Counter]:
     char_counter = Counter()
     bigram_counter = Counter()
 
@@ -18,7 +17,6 @@ def count_chars(files) -> tuple[Counter, Counter]:
         if p.is_file():
             text = p.read_text().lower()
             char_counter.update(text)
-            # bigram_counter.update(map(lambda t: t[0] + t[1], itertools.pairwise(text)))
             bigram_counter.update((text[i : i + 2] for i in range(len(text) - 1)))
 
     return char_counter, bigram_counter
@@ -44,6 +42,7 @@ def main():
     print(f"Counting characters in {len(files)} files: {files}")
 
     char_counter, bigram_counter = count_chars(files)
+    topk = 50
 
     print("BIGRAMS just alpha")
     print_stats(
@@ -58,7 +57,7 @@ def main():
         bigram_counter,
         predicate=lambda k: k not in ("  ", "\n ", "\n\n")
         and not bool(set(k).intersection(string.ascii_lowercase)),
-        topk=60,
+        topk=topk,
     )
     print()
 
@@ -70,24 +69,24 @@ def main():
                 string.ascii_lowercase + string.digits + string.whitespace
             )
         ),
-        topk=60,
+        topk=topk,
     )
     print()
 
     print("ALL")
-    print_stats(char_counter, predicate=lambda _: True, topk=60)
+    print_stats(char_counter, predicate=lambda _: True, topk=50)
     print()
 
     print("ALPHA")
-    print_stats(char_counter, predicate=lambda x: x.isalpha(), topk=60)
+    print_stats(char_counter, predicate=lambda x: x.isalpha(), topk=50)
     print()
 
     print("DIGIT")
-    print_stats(char_counter, predicate=lambda x: x.isdigit(), topk=60)
+    print_stats(char_counter, predicate=lambda x: x.isdigit(), topk=50)
     print()
 
     print("OTHER")
-    print_stats(char_counter, predicate=lambda x: not x.isalnum(), topk=60)
+    print_stats(char_counter, predicate=lambda x: not x.isalnum(), topk=50)
     print()
 
 
