@@ -6,6 +6,7 @@
 #include QMK_KEYBOARD_H
 #include "features/custom_shift_keys.h"
 #include "features/layer_lock.h"
+#include "features/sm_td.h"
 // #include "features/oneshot.h"
 // #include "features/achordion.h"
 
@@ -28,7 +29,30 @@ enum keycodes {
   MY_COPY,
   MY_CUT,
   MY_PSTE,
+  // left home row
+  CKC_A,
+  CKC_R,
+  CKC_S,
+  CKC_T,
+  // right home row
+  CKC_N,
+  CKC_E,
+  CKC_I,
+  CKC_O,
 };
+
+smtd_state smtd_states[] = {
+    SMTD(CKC_A),
+    SMTD(CKC_R),
+    SMTD(CKC_S),
+    SMTD(CKC_T),
+    SMTD(CKC_N),
+    SMTD(CKC_E),
+    SMTD(CKC_I),
+    SMTD(CKC_O),
+};
+// this is the size of your custom keycodes array, it is used for internal purposes. Do not delete this
+size_t smtd_states_size = sizeof(smtd_states) / sizeof(smtd_states[0]);
 
 // aliases - mostly to keep the format/style consistent
 // one shot mods
@@ -80,46 +104,54 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 
 
 // ==============================================
-// Tab or hold definitions
-// https://getreuer.info/posts/keyboards/triggers/index.html#tap-vs.-long-press
-#define TH_Q LT(0, KC_Q)
-#define TH_W LT(0, KC_W)
-#define TH_F LT(0, KC_F)
-#define TH_P LT(0, KC_P)
-#define TH_G LT(0, KC_G)
-#define TH_J LT(0, KC_J)
-#define TH_L LT(0, KC_L)
-#define TH_U LT(0, KC_U)
-#define TH_Y LT(0, KC_Y)
-
-static bool process_tap_or_long_press_key(keyrecord_t* record, uint16_t long_press_keycode) {
-  if (record->tap.count == 0) {  // Key is being held.
-    if (record->event.pressed) {
-      tap_code16(long_press_keycode);
-    }
-    return false;  // Skip default handling.
-  }
-  return true;  // Continue default handling.
-}
-
-// A macro to clean up the switch statement.
-#define TH_CASE(tap_key, long_press_key) \
-  case tap_key: return process_tap_or_long_press_key(record, long_press_key);
-
+// A macro to implement mod tap with sm_td
+#define TD_MT(custom_keycode, tap_key, hold_mod_key) \
+    case custom_keycode: { \
+      switch (action) { \
+        case SMTD_ACTION_TOUCH: \
+          break; \
+        case SMTD_ACTION_TAP: \
+          tap_code(tap_key); \
+          break; \
+        case SMTD_ACTION_HOLD: \
+          switch (tap_count) { \
+            case 0: \
+            case 1: \
+              register_mods(MOD_BIT(hold_mod_key)); \
+              break; \
+            default: \
+              register_code16(tap_key); \
+              break; \
+          } \
+          break; \
+        case SMTD_ACTION_RELEASE: \
+          switch (tap_count) { \
+            case 0: \
+            case 1: \
+              unregister_mods(MOD_BIT(hold_mod_key)); \
+              break; \
+            default: \
+              unregister_code16(tap_key); \
+              break; \
+          } \
+          break; \
+      } \
+      break; \
+    } \
 
 
 // ==============================================
 // LAYOUT
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ALPHA] = LAYOUT_split_3x6_3(
-      XXXXXXX,    TH_Q,    TH_W,    TH_F,    TH_P,    TH_G,                         TH_J,    TH_L,    TH_U,    TH_Y, KC_COLN, XXXXXXX,
-      KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  QK_REP,
+      XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, XXXXXXX,
+      KC_LCTL,   CKC_A,   CKC_R,   CKC_S,   CKC_T,    KC_D,                         KC_H,   CKC_N,   CKC_E,   CKC_I,   CKC_O,  QK_REP,
       XXXXXXX,   Z_BRM,   X_BRM,   C_BRM,   V_BRM,    KC_B,                         KC_K,   M_BRM, COM_BRM, DOT_BRM, KC_UNDS, XXXXXXX,
                                            KC_TAB, SPC_NAV, ESC_CTR,    OSM_SFT, ENT_SYM,  KC_TAB
   ),
   [_NAV] = LAYOUT_split_3x6_3(
       _______, VOL_MUT, VOL_DWN,  VOL_UP, KC_PSCR, KC_PSCR,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL,   LLOCK,
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_SPC,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
+      _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_SPC,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
       _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP,  KC_APP, _______,
                                           _______, _______, _______,    _______, _______, _______
       //                                           ^^^^^^^
@@ -144,29 +176,48 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _SYM, _NAV, _NUM);
 }
 
+uint32_t get_smtd_timeout(uint16_t keycode, smtd_timeout timeout) {
+    switch (keycode) {
+        case CKC_A:
+        case CKC_O:
+            if (timeout == SMTD_TIMEOUT_TAP) return 300;
+    }
+    return get_smtd_timeout_default(timeout);
+}
+
+void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
+  //
+  // States are one of the two:
+  // - touch → tap
+  // - touch → hold → release
+  //
+  switch (keycode) {
+    // left home row
+    TD_MT(CKC_A, KC_A, KC_LALT)
+    TD_MT(CKC_R, KC_R, KC_LGUI)
+    TD_MT(CKC_S, KC_S, KC_LCTL)
+    TD_MT(CKC_T, KC_T, KC_LSFT)
+    // right home row
+    TD_MT(CKC_N, KC_N, KC_LSFT)
+    TD_MT(CKC_E, KC_E, KC_LCTL)
+    TD_MT(CKC_I, KC_I, KC_LGUI)
+    TD_MT(CKC_O, KC_O, KC_LALT)
+  }
+}
+
 // ==============================================
 // CORE
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  if (!process_smtd(keycode, record)) {
+    return false;
+  }
+
   if (!process_custom_shift_keys(keycode, record)) {
     return false;
   }
 
   if (!process_layer_lock(keycode, record, LLOCK)) {
     return false;
-  }
-
-  // Tap vs. long press
-  switch (keycode) {
-    TH_CASE(TH_Q, KC_EXLM)
-    TH_CASE(TH_W, KC_AT)
-    TH_CASE(TH_F, KC_HASH)
-    TH_CASE(TH_P, KC_DLR)
-    TH_CASE(TH_G, KC_PERC)
-
-    TH_CASE(TH_J, KC_CIRC)
-    TH_CASE(TH_L, KC_AMPR)
-    TH_CASE(TH_U, KC_ASTR)
-    TH_CASE(TH_Y, KC_LPRN)
   }
 
   return true;
