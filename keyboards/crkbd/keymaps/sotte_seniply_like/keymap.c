@@ -80,46 +80,17 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 
 
 // ==============================================
-// Tab or hold definitions
-// https://getreuer.info/posts/keyboards/triggers/index.html#tap-vs.-long-press
-#define TH_Q LT(0, KC_Q)
-#define TH_W LT(0, KC_W)
-#define TH_F LT(0, KC_F)
-#define TH_P LT(0, KC_P)
-#define TH_G LT(0, KC_G)
-#define TH_J LT(0, KC_J)
-#define TH_L LT(0, KC_L)
-#define TH_U LT(0, KC_U)
-#define TH_Y LT(0, KC_Y)
-
-static bool process_tap_or_long_press_key(keyrecord_t* record, uint16_t long_press_keycode) {
-  if (record->tap.count == 0) {  // Key is being held.
-    if (record->event.pressed) {
-      tap_code16(long_press_keycode);
-    }
-    return false;  // Skip default handling.
-  }
-  return true;  // Continue default handling.
-}
-
-// A macro to clean up the switch statement.
-#define TH_CASE(tap_key, long_press_key) \
-  case tap_key: return process_tap_or_long_press_key(record, long_press_key);
-
-
-
-// ==============================================
 // LAYOUT
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ALPHA] = LAYOUT_split_3x6_3(
-      XXXXXXX,    TH_Q,    TH_W,    TH_F,    TH_P,    TH_G,                         TH_J,    TH_L,    TH_U,    TH_Y, KC_COLN, XXXXXXX,
+      XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, XXXXXXX,
       KC_LCTL,    KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                         KC_H,    KC_N,    KC_E,    KC_I,    KC_O,  QK_REP,
       XXXXXXX,   Z_BRM,   X_BRM,   C_BRM,   V_BRM,    KC_B,                         KC_K,   M_BRM, COM_BRM, DOT_BRM, KC_UNDS, XXXXXXX,
-                                           KC_TAB, SPC_NAV, ESC_CTR,    OSM_SFT, ENT_SYM,  KC_TAB
+                                           KC_TAB, SPC_NAV, ESC_CTR,    OSM_SFT, ENT_SYM,  KC_BSPC
   ),
   [_NAV] = LAYOUT_split_3x6_3(
-      _______, VOL_MUT, VOL_DWN,  VOL_UP, KC_PSCR, KC_PSCR,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL,   LLOCK,
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_SPC,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
+      _______, VOL_MUT, KC_BSPC,   KC_UP,  KC_DEL, KC_PSCR,                      KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL,  KC_DEL,   LLOCK,
+      _______, KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END,                      KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END, _______,
       _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, XXXXXXX,                      KC_PGDN,  KC_ENT,  KC_TAB,  QK_REP,  KC_APP, _______,
                                           _______, _______, _______,    _______, _______, _______
       //                                           ^^^^^^^
@@ -153,20 +124,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
   if (!process_layer_lock(keycode, record, LLOCK)) {
     return false;
-  }
-
-  // Tap vs. long press
-  switch (keycode) {
-    TH_CASE(TH_Q, KC_EXLM)
-    TH_CASE(TH_W, KC_AT)
-    TH_CASE(TH_F, KC_HASH)
-    TH_CASE(TH_P, KC_DLR)
-    TH_CASE(TH_G, KC_PERC)
-
-    TH_CASE(TH_J, KC_CIRC)
-    TH_CASE(TH_L, KC_AMPR)
-    TH_CASE(TH_U, KC_ASTR)
-    TH_CASE(TH_Y, KC_LPRN)
   }
 
   return true;
