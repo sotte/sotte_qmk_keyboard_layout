@@ -133,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NAV] = LAYOUT_split_3x6_3(
     _______, KC_PSCR, KC_BSPC,   KC_UP,  KC_DEL, KC_PGUP,                      XXXXXXX, KC_BSPC, XXXXXXX,  KC_DEL, XXXXXXX,   LLOCK,
     _______, KC_HOME, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END,                      XXXXXXX, KC_LSFT, KC_LCTL, KC_LGUI, KC_LALT, _______,
-    _______, KC_LALT,  KC_CUT, KC_COPY, KC_PSTE, KC_PGDN,                      XXXXXXX, XXXXXXX, XXXXXXX,  QK_REP,  KC_APP, _______,
+    _______, KC_LALT,  KC_CUT,  KC_TAB,  KC_ENT, KC_PGDN,                      XXXXXXX, XXXXXXX, XXXXXXX,  QK_REP,  KC_APP, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                           ^^^^^^^
   ),
@@ -164,6 +164,24 @@ void matrix_scan_user(void) {
 // ==============================================
 // CORE
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  // having the custom mod tab behavior implemenlted here works
+  // but does it intefere withe the rest of the logic in this function.
+  // do I even get the achordion logic?
+
+  switch (keycode) {
+
+    case UNDS_HR:
+      if (record->tap.count) {  // On tap.
+        if (record->event.pressed) {  // On press.
+          register_code16(KC_UNDS);
+        } else {                      // On release.
+          unregister_code16(KC_UNDS);
+        }
+        return false;  // Skip default handling.
+      }
+      break;
+  }
+
   if (!process_achordion(keycode, record)) {
     return false;
   }
@@ -190,8 +208,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 //     prev_keycode = keycode;
 //     prev_pos = record->event.key;
 //   }
-//   return true;
 
+  return true;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
