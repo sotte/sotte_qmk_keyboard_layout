@@ -77,6 +77,10 @@ def main():
     print_stats(char_counter, predicate=lambda _: True, topk=50)
     print()
 
+    print("NON ALPHA")
+    print_stats(char_counter, predicate=lambda x: not x.isalpha(), topk=50)
+    print()
+
     print("ALPHA")
     print_stats(char_counter, predicate=lambda x: x.isalpha(), topk=50)
     print()
