@@ -67,7 +67,18 @@ enum keycodes {
 #define VOL_UP   KC_KB_VOLUME_UP
 #define VOL_DWN  KC_KB_VOLUME_DOWN
 
-// ==============================================
+#define CKC_Q LT(0, KC_Q)
+#define CKC_W LT(0, KC_W)
+#define CKC_F LT(0, KC_F)
+#define CKC_P LT(0, KC_P)
+#define CKC_G LT(0, KC_G)
+#define CKC_J LT(0, KC_J)
+#define CKC_L LT(0, KC_L)
+#define CKC_U LT(0, KC_U)
+#define CKC_Y LT(0, KC_Y)
+#define CKC_COLN LT(0, KC_COLN)
+
+// =============
 // ACHORDION
 bool achordion_chord(
   uint16_t tap_hold_keycode,
@@ -127,12 +138,21 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
     } \
     break;
 
+#define LONG_PRESS(mapping, record, long_press_key) \
+  case mapping: \
+    if (record->tap.count == 0) { \
+      if (record->event.pressed) { \
+        tap_code16(long_press_key); \
+      } \
+      return false; \
+    } \
+    return true;
 
 // ==============================================
 // LAYOUT
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ALPHA] = LAYOUT_split_3x6_3(
-    XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, XXXXXXX,
+    XXXXXXX,   CKC_Q,   CKC_W,   CKC_F,   CKC_P,   CKC_G,                        CKC_J,   CKC_L,   CKC_U,   CKC_Y,CKC_COLN, XXXXXXX,
     TAB_CTL,   A_HRM,   R_HRM,   S_HRM,   T_HRM,    KC_D,                         KC_H,   N_HRM,   E_HRM,   I_HRM,   O_HRM,  QK_REP,
     XXXXXXX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_DQUO, XXXXXXX,
                                          KC_ENT, SPC_NAV, KC_ESC,     OSM_SFT, ENT_SYM,  KC_TAB
@@ -176,6 +196,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     MT_CKC(UNDS_HR, KC_UNDS)
     MT_CKC(LPRN_HR, KC_LPRN)
     MT_CKC(RPRN_HR, KC_RPRN)
+    // long perss logic
+    LONG_PRESS(CKC_Q, record, KC_1)
+    LONG_PRESS(CKC_W, record, KC_2)
+    LONG_PRESS(CKC_F, record, KC_3)
+    LONG_PRESS(CKC_P, record, KC_4)
+    LONG_PRESS(CKC_G, record, KC_5)
+    LONG_PRESS(CKC_J, record, KC_6)
+    LONG_PRESS(CKC_L, record, KC_7)
+    LONG_PRESS(CKC_U, record, KC_8)
+    LONG_PRESS(CKC_Y, record, KC_9)
+    LONG_PRESS(CKC_COLN, record, KC_0)
   }
   return true;
 }
