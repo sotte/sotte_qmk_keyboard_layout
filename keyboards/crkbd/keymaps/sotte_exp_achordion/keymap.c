@@ -167,13 +167,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SYM] = LAYOUT_split_3x6_3(
     _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_SLSH, KC_COLN,   LLOCK,
     _______, QUES_HR, LBRC_HR, LPRN_HR,  EQL_HR, KC_PIPE,                      KC_TILD, UNDS_HR, RPRN_HR, RBRC_HR, GRVE_HR, _______,
-    _______, KC_LALT,  KC_APP, KC_LCTL, KC_PLUS, KC_BSLS,                      XXXXXXX, KC_MINS, KC_COMM,  KC_DOT, KC_DQUO, _______,
+    _______, XXXXXXX, KC_LABK, KC_RABK, KC_PLUS, KC_BSLS,                      XXXXXXX, KC_MINS, KC_COMM,  KC_DOT, KC_DQUO, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                                                         ^^^^^^^
   ),
   [_NUM] = LAYOUT_split_3x6_3(
     _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_ASTR,    KC_7,    KC_8,    KC_9, KC_PLUS,   LLOCK,
-    _______, KC_QUES, KC_BSLS, KC_COMM,  KC_DOT,  KC_SPC,                       KC_EQL,    KC_4,    KC_5,    KC_6, KC_MINS, _______,
+    _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_SPC,                       KC_EQL,    KC_4,    KC_5,    KC_6, KC_MINS, _______,
     _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, XXXXXXX,                         KC_0,    KC_1,    KC_2,    KC_3, KC_SLSH, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                           ^^^^^^^                       ^^^^^^^
@@ -206,6 +206,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     LONG_PRESS(CKC_L, record, KC_7)
     LONG_PRESS(CKC_U, record, KC_8)
     LONG_PRESS(CKC_Y, record, KC_9)
+    // FIXME: cusom shift key is colliding with the long press
     LONG_PRESS(CKC_COLN, record, KC_0)
   }
   return true;
