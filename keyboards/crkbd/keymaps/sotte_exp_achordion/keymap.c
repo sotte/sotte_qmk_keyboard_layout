@@ -57,8 +57,8 @@ enum keycodes {
 #define RPRN_HR  LSFT_T(KC_RPRN)
 // SYM RIGHT
 #define EQL_HR   LSFT_T(KC_EQL)
-#define PLUS_HR  LCTL_T(KC_PLUS)
-#define MINS_HR  LGUI_T(KC_MINS)
+#define MINS_HR  LCTL_T(KC_MINS)
+#define PLUS_HR  LGUI_T(KC_PLUS)
 #define GRVE_HR  LALT_T(KC_GRAVE)
 
 // Volume
@@ -166,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_SYM] = LAYOUT_split_3x6_3(
     _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_SLSH, KC_COLN,   LLOCK,
-    _______, QUES_HR, KC_LGUI, LPRN_HR, RPRN_HR, KC_PIPE,                      KC_TILD,  EQL_HR, PLUS_HR, MINS_HR, GRVE_HR, _______,
+    _______, QUES_HR, KC_LGUI, LPRN_HR, RPRN_HR, KC_PIPE,                      KC_TILD,  EQL_HR, MINS_HR, PLUS_HR, GRVE_HR, _______,
     _______, KC_QUES, XXXXXXX, KC_LBRC, KC_RBRC, KC_BSLS,                      XXXXXXX, XXXXXXX, KC_COMM,  KC_DOT, KC_UNDS, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                                                         ^^^^^^^
