@@ -9,6 +9,7 @@
 #include "features/layer_lock.h"
 #include "features/achordion.h"
 
+// =============================================================================
 enum layer_names {
   _ALPHA,
   _NAV,
@@ -31,10 +32,13 @@ enum keycodes {
 };
 
 // ALIASES - mostly to keep the format/style consistent
-// one shot mods
 #define OSM_SFT  OSM(MOD_LSFT)
+#define TAB_CTL  LCTL_T(KC_TAB)
+// Layer taps and modifier taps
+#define SPC_NAV  LT(_NAV, KC_SPC)
+#define ENT_SYM  LT(_SYM, KC_ENT)
 
-// HOME ROW MODS
+// HOME ROW MODS ON ALPHA
 // ALPHA LEFT
 #define A_HRM    LALT_T(KC_A)
 #define R_HRM    LGUI_T(KC_R)
@@ -45,22 +49,17 @@ enum keycodes {
 #define E_HRM    RCTL_T(KC_E)
 #define I_HRM    RGUI_T(KC_I)
 #define O_HRM    LALT_T(KC_O)
+// HOME ROW MODS ON SYM
 // SYM LEFT
 #define QUES_HR  LALT_T(KC_QUES)
-#define LBRC_HR  LGUI_T(KC_LBRC)
+// no key for WIN yet
 #define LPRN_HR  LCTL_T(KC_LPRN)
-#define EQL_HR   LSFT_T(KC_EQL)
+#define RPRN_HR  LSFT_T(KC_RPRN)
 // SYM RIGHT
-#define UNDS_HR  LSFT_T(KC_UNDS)
-#define RPRN_HR  LCTL_T(KC_RPRN)
-#define RBRC_HR  LGUI_T(KC_RBRC)
+#define EQL_HR   LSFT_T(KC_EQL)
+#define PLUS_HR  LCTL_T(KC_PLUS)
+#define MINS_HR  LGUI_T(KC_MINS)
 #define GRVE_HR  LALT_T(KC_GRAVE)
-
-#define TAB_CTL  LCTL_T(KC_TAB)
-
-// Layer taps and modifier taps
-#define SPC_NAV  LT(_NAV, KC_SPC)
-#define ENT_SYM  LT(_SYM, KC_ENT)
 
 // Volume
 #define VOL_MUT  KC_KB_MUTE
@@ -78,7 +77,7 @@ enum keycodes {
 #define CKC_Y LT(0, KC_Y)
 #define CKC_COLN LT(0, KC_COLN)
 
-// =============
+// =============================================================================
 // ACHORDION
 bool achordion_chord(
   uint16_t tap_hold_keycode,
@@ -101,7 +100,7 @@ void matrix_scan_user(void) {
   achordion_task();
 }
 
-// ==============================================
+// =============================================================================
 // CUSTOM SHIFT KEYS
 // https://getreuer.info/posts/keyboards/custom-shift-keys/index.html
 const custom_shift_key_t custom_shift_keys[] = {
@@ -124,7 +123,7 @@ const custom_shift_key_t custom_shift_keys[] = {
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
-// ==============================================
+// =============================================================================
 // Custom keycode for mod tap
 // https://github.com/getreuer/qmk-keymap/discussions/69
 #define MT_CKC(mapping, kc) \
@@ -149,7 +148,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
     } \
     return true;
 
-// ==============================================
+// =============================================================================
 // LAYOUT
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ALPHA] = LAYOUT_split_3x6_3(
@@ -167,8 +166,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_SYM] = LAYOUT_split_3x6_3(
     _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_SLSH, KC_COLN,   LLOCK,
-    _______, QUES_HR, LBRC_HR, LPRN_HR,  EQL_HR, KC_PIPE,                      KC_TILD, UNDS_HR, RPRN_HR, RBRC_HR, GRVE_HR, _______,
-    _______, XXXXXXX, KC_LABK, KC_RABK, KC_PLUS, KC_BSLS,                      KC_PLUS, KC_MINS, KC_COMM,  KC_DOT, KC_UNDS, _______,
+    _______, QUES_HR, KC_LGUI, LPRN_HR, RPRN_HR, KC_PIPE,                      KC_TILD,  EQL_HR, PLUS_HR, MINS_HR, GRVE_HR, _______,
+    _______, KC_QUES, XXXXXXX, KC_LBRC, KC_RBRC, KC_BSLS,                      XXXXXXX, XXXXXXX, KC_COMM,  KC_DOT, KC_UNDS, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                                                         ^^^^^^^
   ),
@@ -181,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-// ==============================================
+// =============================================================================
 //CORE
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
@@ -194,21 +193,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     // hrm with non-basic keys
     MT_CKC(QUES_HR, KC_QUES)
-    MT_CKC(UNDS_HR, KC_UNDS)
     MT_CKC(LPRN_HR, KC_LPRN)
     MT_CKC(RPRN_HR, KC_RPRN)
-    // long perss logic
-    LONG_PRESS(CKC_Q, record, KC_1)
-    LONG_PRESS(CKC_W, record, KC_2)
-    LONG_PRESS(CKC_F, record, KC_3)
-    LONG_PRESS(CKC_P, record, KC_4)
-    LONG_PRESS(CKC_G, record, KC_5)
-    LONG_PRESS(CKC_J, record, KC_6)
-    LONG_PRESS(CKC_L, record, KC_7)
-    LONG_PRESS(CKC_U, record, KC_8)
-    LONG_PRESS(CKC_Y, record, KC_9)
-    // FIXME: cusom shift key is colliding with the long press
-    LONG_PRESS(CKC_COLN, record, KC_0)
+    MT_CKC(PLUS_HR, KC_PLUS)
+
+    // // long perss logic
+    // LONG_PRESS(CKC_Q, record, KC_1)
+    // LONG_PRESS(CKC_W, record, KC_2)
+    // LONG_PRESS(CKC_F, record, KC_3)
+    // LONG_PRESS(CKC_P, record, KC_4)
+    // LONG_PRESS(CKC_G, record, KC_5)
+    // LONG_PRESS(CKC_J, record, KC_6)
+    // LONG_PRESS(CKC_L, record, KC_7)
+    // LONG_PRESS(CKC_U, record, KC_8)
+    // LONG_PRESS(CKC_Y, record, KC_9)
+    // // FIXME: cusom shift key is colliding with the long press
+    // LONG_PRESS(CKC_COLN, record, KC_0)
   }
   return true;
 }
