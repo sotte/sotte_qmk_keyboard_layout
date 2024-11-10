@@ -15,6 +15,7 @@ enum layer_names {
   _NAV,
   _SYM,
   _NUM,
+  _NUM2,
 };
 
 enum keycodes {
@@ -37,6 +38,7 @@ enum keycodes {
 // Layer taps and modifier taps
 #define SPC_NAV  LT(_NAV, KC_SPC)
 #define ENT_SYM  LT(_SYM, KC_ENT)
+#define ESC_NUM  LT(_NUM2, KC_ESC)
 
 // HOME ROW MODS ON ALPHA
 // ALPHA LEFT
@@ -155,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, XXXXXXX,
     TAB_CTL,   A_HRM,   R_HRM,   S_HRM,   T_HRM,    KC_D,                         KC_H,   N_HRM,   E_HRM,   I_HRM,   O_HRM, KC_QUOT,
     XXXXXXX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, XXXXXXX,
-                                         KC_ENT, SPC_NAV, KC_ESC,     OSM_SFT, ENT_SYM,  KC_TAB
+                                         KC_ENT, SPC_NAV, ESC_NUM,    OSM_SFT, ENT_SYM,  KC_TAB
   ),
   [_NAV] = LAYOUT_split_3x6_3(
     _______, KC_PSCR, KC_BSPC,   KC_UP,  KC_DEL, KC_PGUP,                       VOL_UP, KC_BRIU, XXXXXXX, XXXXXXX, XXXXXXX,   LLOCK,
@@ -177,6 +179,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, XXXXXXX,                         KC_0,    KC_1,    KC_2,    KC_3, KC_SLSH, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                           ^^^^^^^                       ^^^^^^^
+  ),
+  [_NUM2] = LAYOUT_split_3x6_3(
+    _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
+    _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_SPC,                         KC_0,    KC_1,    KC_2,    KC_3,    KC_4, _______,
+    _______, KC_LALT, KC_LGUI, KC_LCTL,  KC_SPC, XXXXXXX,                         KC_0,    KC_4,    KC_5,    KC_6, KC_UNDS, _______,
+                                        _______, _______, _______,    _______, _______, _______
+    //                                                    ^^^^^^^
   ),
 };
 
