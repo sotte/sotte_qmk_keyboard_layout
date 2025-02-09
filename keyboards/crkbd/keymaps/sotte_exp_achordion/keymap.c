@@ -30,6 +30,10 @@ enum keycodes {
   MY_COPY,
   MY_CUT,
   MY_PSTE,
+  CKC_Z,
+  CKC_X,
+  CKC_C,
+  CKC_V,
 };
 
 // ALIASES - mostly to keep the format/style consistent
@@ -67,6 +71,12 @@ enum keycodes {
 #define VOL_MUT  KC_KB_MUTE
 #define VOL_UP   KC_KB_VOLUME_UP
 #define VOL_DWN  KC_KB_VOLUME_DOWN
+
+// LONG PRESS KEYS
+#define CKC_Z LT(0, KC_Z)
+#define CKC_X LT(0, KC_X)
+#define CKC_C LT(0, KC_C)
+#define CKC_V LT(0, KC_V)
 
 #define CKC_Q LT(0, KC_Q)
 #define CKC_W LT(0, KC_W)
@@ -156,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ALPHA] = LAYOUT_split_3x6_3(
     XXXXXXX,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                         KC_J,    KC_L,    KC_U,    KC_Y, KC_COLN, XXXXXXX,
     TAB_CTL,   A_HRM,   R_HRM,   S_HRM,   T_HRM,    KC_D,                         KC_H,   N_HRM,   E_HRM,   I_HRM,   O_HRM, KC_QUOT,
-    XXXXXXX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, XXXXXXX,
+    XXXXXXX,   CKC_Z,   CKC_X,   CKC_C,   CKC_V,    KC_B,                         KC_K,    KC_M, KC_COMM,  KC_DOT, KC_UNDS, XXXXXXX,
                                          KC_ENT, SPC_NAV, ESC_NUM,    OSM_SFT, ENT_SYM,  KC_TAB
   ),
   [_NAV] = LAYOUT_split_3x6_3(
@@ -207,6 +217,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     MT_CKC(PLUS_HR, KC_PLUS)
 
     // // long perss logic
+    LONG_PRESS(CKC_Z, record, C(KC_Z))
+    LONG_PRESS(CKC_X, record, C(KC_X))
+    LONG_PRESS(CKC_C, record, C(KC_C))
+    LONG_PRESS(CKC_V, record, C(KC_V))
     // LONG_PRESS(CKC_Q, record, KC_1)
     // LONG_PRESS(CKC_W, record, KC_2)
     // LONG_PRESS(CKC_F, record, KC_3)
