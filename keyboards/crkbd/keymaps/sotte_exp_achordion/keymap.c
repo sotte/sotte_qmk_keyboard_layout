@@ -43,6 +43,7 @@ enum keycodes {
 #define SPC_NAV  LT(_NAV, KC_SPC)
 #define ENT_SYM  LT(_SYM, KC_ENT)
 #define ESC_NUM  LT(_NUM2, KC_ESC)
+#define ESC_NAV  LT(_NAV, KC_ESC)
 
 // HOME ROW MODS ON ALPHA
 // ALPHA LEFT
@@ -191,12 +192,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                                           ^^^^^^^                       ^^^^^^^
   ),
   [_NUM2] = LAYOUT_split_3x6_3(
-    _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
+    _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_5,    KC_6,    KC_7,    KC_8, _______,
     _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_SPC,                         KC_0,    KC_1,    KC_2,    KC_3,    KC_4, _______,
-    _______, KC_LALT, KC_LGUI, KC_LCTL,  KC_SPC, XXXXXXX,                         KC_0,    KC_4,    KC_5,    KC_6, KC_UNDS, _______,
+    _______, KC_LALT, KC_LGUI, KC_LCTL,  KC_SPC, XXXXXXX,                         KC_0,    KC_0,    KC_9,  KC_DOT, KC_UNDS, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                                    ^^^^^^^
-  ),
+  )
 };
 
 // =============================================================================
