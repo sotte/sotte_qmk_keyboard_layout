@@ -1,5 +1,5 @@
 # https://getreuer.info/posts/keyboards/achordion/index.html
-SRC += features/achordion.c
+# SRC += features/achordion.c
 
 # https://getreuer.info/posts/keyboards/custom-shift-keys/index.html
 SRC += features/custom_shift_keys.c

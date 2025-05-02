@@ -7,7 +7,7 @@
 #include QMK_KEYBOARD_H
 #include "features/custom_shift_keys.h"
 #include "features/layer_lock.h"
-#include "features/achordion.h"
+// #include "features/achordion.h"
 
 // =============================================================================
 enum layer_names {
@@ -92,25 +92,33 @@ enum keycodes {
 
 // =============================================================================
 // ACHORDION
-bool achordion_chord(
-  uint16_t tap_hold_keycode,
-  keyrecord_t* tap_hold_record,
-  uint16_t other_keycode,
-  keyrecord_t* other_record
-) {
-  // Thumb cluster is independent of the achordion logic; it should works for both sides.
-  // I.e. when using the left thumb cluster, you can use buttons on the left,
-  // and when using the right thumb cluster, you can use buttons on the right.
-  if (tap_hold_record->event.key.row == 3) { return true; }
-  if (tap_hold_record->event.key.row == 7) { return true; }
-  // Also, ignore the leftmost column
-  if (tap_hold_record->event.key.col == 0) { return true; }
+// bool achordion_chord(
+//   uint16_t tap_hold_keycode,
+//   keyrecord_t* tap_hold_record,
+//   uint16_t other_keycode,
+//   keyrecord_t* other_record
+// ) {
+//   // Thumb cluster is independent of the achordion logic; it should works for both sides.
+//   // I.e. when using the left thumb cluster, you can use buttons on the left,
+//   // and when using the right thumb cluster, you can use buttons on the right.
+//   if (tap_hold_record->event.key.row == 3) { return true; }
+//   if (tap_hold_record->event.key.row == 7) { return true; }
+//   // Also, ignore the leftmost column
+//   if (tap_hold_record->event.key.col == 0) { return true; }
+//
+//   return achordion_opposite_hands(tap_hold_record, other_record);
+// }
 
-  return achordion_opposite_hands(tap_hold_record, other_record);
-}
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+  LAYOUT(
+    '*', 'L', 'L', 'L', 'L', 'L',   'R', 'R', 'R', 'R', 'R', '*',
+    '*', 'L', 'L', 'L', 'L', 'L',   'R', 'R', 'R', 'R', 'R', '*',
+    '*', 'L', 'L', 'L', 'L', 'L',   'R', 'R', 'R', 'R', 'R', '*',
+                   '*', '*', '*',   '*', '*', '*'
+  );
 
 void matrix_scan_user(void) {
-  achordion_task();
+  // achordion_task();
 }
 
 // =============================================================================
@@ -204,7 +212,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //CORE
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
-  if (!process_achordion(keycode, record)) { return false; }
+  // if (!process_achordion(keycode, record)) { return false; }
+  //get_chordal_hold
 
   if (!process_custom_shift_keys(keycode, record)) { return false; }
 
