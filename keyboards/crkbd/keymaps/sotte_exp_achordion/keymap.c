@@ -1,13 +1,7 @@
 // vim: ts=2:sw=2
-/*
- * Goal: evaluate the typing streak feature achordiaon when using actua home row mods.
- *
- * Still need to figure out how to adjust the non-alpha layers assuming I can use smtd for the home row mods.
- */
 #include QMK_KEYBOARD_H
 #include "features/custom_shift_keys.h"
 #include "features/layer_lock.h"
-// #include "features/achordion.h"
 
 // =============================================================================
 enum layer_names {
@@ -91,24 +85,7 @@ enum keycodes {
 #define CKC_COLN LT(0, KC_COLN)
 
 // =============================================================================
-// ACHORDION
-// bool achordion_chord(
-//   uint16_t tap_hold_keycode,
-//   keyrecord_t* tap_hold_record,
-//   uint16_t other_keycode,
-//   keyrecord_t* other_record
-// ) {
-//   // Thumb cluster is independent of the achordion logic; it should works for both sides.
-//   // I.e. when using the left thumb cluster, you can use buttons on the left,
-//   // and when using the right thumb cluster, you can use buttons on the right.
-//   if (tap_hold_record->event.key.row == 3) { return true; }
-//   if (tap_hold_record->event.key.row == 7) { return true; }
-//   // Also, ignore the leftmost column
-//   if (tap_hold_record->event.key.col == 0) { return true; }
-//
-//   return achordion_opposite_hands(tap_hold_record, other_record);
-// }
-
+// chordal_hold_layout
 const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
   LAYOUT(
     '*', 'L', 'L', 'L', 'L', 'L',   'R', 'R', 'R', 'R', 'R', '*',
@@ -116,10 +93,6 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
     '*', 'L', 'L', 'L', 'L', 'L',   'R', 'R', 'R', 'R', 'R', '*',
                    '*', '*', '*',   '*', '*', '*'
   );
-
-void matrix_scan_user(void) {
-  // achordion_task();
-}
 
 // =============================================================================
 // CUSTOM SHIFT KEYS
@@ -211,10 +184,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // =============================================================================
 //CORE
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-
-  // if (!process_achordion(keycode, record)) { return false; }
-  //get_chordal_hold
-
   if (!process_custom_shift_keys(keycode, record)) { return false; }
 
   if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
@@ -231,17 +200,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     LONG_PRESS(CKC_X, record, C(KC_X))
     LONG_PRESS(CKC_C, record, C(KC_C))
     LONG_PRESS(CKC_V, record, C(KC_V))
-    // LONG_PRESS(CKC_Q, record, KC_1)
-    // LONG_PRESS(CKC_W, record, KC_2)
-    // LONG_PRESS(CKC_F, record, KC_3)
-    // LONG_PRESS(CKC_P, record, KC_4)
-    // LONG_PRESS(CKC_G, record, KC_5)
-    // LONG_PRESS(CKC_J, record, KC_6)
-    // LONG_PRESS(CKC_L, record, KC_7)
-    // LONG_PRESS(CKC_U, record, KC_8)
-    // LONG_PRESS(CKC_Y, record, KC_9)
-    // // FIXME: cusom shift key is colliding with the long press
-    // LONG_PRESS(CKC_COLN, record, KC_0)
   }
   return true;
 }
