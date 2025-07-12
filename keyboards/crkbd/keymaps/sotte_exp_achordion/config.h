@@ -8,8 +8,8 @@
 #define PERMISSIVE_HOLD
 #define CHORDAL_HOLD
 
-#define QUICK_TAP_TERM_PER_KEY
-//#define QUICK_TAP_TERM 0
+// #define QUICK_TAP_TERM_PER_KEY
+// #define QUICK_TAP_TERM 0
 
 // Double tat to activate CAPS
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
