@@ -14,14 +14,35 @@ See references below.
 
 ### Hardware
 
-Corne V3 hotswap with Frood RP2040 V8 MCU, akko ocean blue switches, and random keycaps.
+Corne V3 hotswap with Frood RP2040 V8 MCU, akko something something switches, and random keycaps.
 I got the board from [here](https://42keebs.eu/shop/kits/pro-micro-based/corne-cherry-v3-hotswap-split-ergo-40-kit/).
 
 ### TODO: add all layouts
 
 Right now I only have the `sotte` layout.
-not the other variations.
+Not the other variations.
 
+## Usage
+
+Everything happens via the makefile, just check what it can do:
+
+```bash
+make help
+```
+
+```bash
+# Install and configure everything:
+# clone qmk_firmware, setup venv, pip install qmk and configure
+make boostrap
+
+
+# build a layout
+make achordion
+
+# helper to update the readme from the source code
+# this is called automatically via make
+./bin/update_readme.py
+```
 <!-- REPLACE_MARKER_START -->
 ### TL;DR: Features
 
@@ -147,50 +168,6 @@ Cc Ctrl+c, Cv Ctrl+v
 ```
 
 <!-- REPLACE_MARKER_END -->
-
-## Usage
-
-```bash
-make compile
-make flash
-
-# helper to update the readme from the source code
-# this is called automatically via make
-./bin/update_readme.py
-```
-
-## Bootstrap
-
-This repo is a userspace qmk repo.
-I build it via docker with the
-[new](https://github.com/qmk/qmk_firmware/issues/23984) docker userspace feature.
-
-```bash
-# setup qmk
-mkdir -p ~/coding/
-cd ~/coding/
-git clone git@github.com:qmk/qmk_firmware.git
-cd qmk_firmware
-python3.11 -m venv .venv
-source .venv/bin/activate.fish
-pip install qmk
-
-# configure userspace
-qmk config user.overlay_dir=~/projects/sotte_qmk_keyboard_layout
-
-# make sure everything looks good and there are no warnings
-qmk userspace-doctor
-
-# build the layout you want
-cd ~/coding/qmk_firmware/
-source .venv/bin/activate.fish
-
-bash util/docker_build.sh crkbd:sotte
-bash util/docker_build.sh crkbd:sotte_callum
-bash util/docker_build.sh crkbd:sotte_seniply_like
-bash util/docker_build.sh crkbd:sotte_simple
-bash util/docker_build.sh crkbd:sotte_simple_hrm
-```
 
 ## References
 
