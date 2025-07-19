@@ -8,6 +8,11 @@
 #define PERMISSIVE_HOLD
 #define CHORDAL_HOLD
 
+// https://docs.qmk.fm/tap_hold#flow-tap
+// Only trigger holds behaviors after a break of x ms
+// This should improve the HRM behavior
+#define FLOW_TAP_TERM 150
+
 // #define QUICK_TAP_TERM_PER_KEY
 // #define QUICK_TAP_TERM 0
 
