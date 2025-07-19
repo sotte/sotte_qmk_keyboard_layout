@@ -160,21 +160,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_SYM] = LAYOUT_split_3x6_3(
     _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_SLSH, KC_COLN,   LLOCK,
-    _______, QUES_HR, KC_LGUI, LPRN_HR, RPRN_HR, KC_PIPE,                      KC_TILD,  EQL_HR, MINS_HR, PLUS_HR, GRVE_HR, _______,
+    _______, QUES_HR, KC_LGUI, LPRN_HR, RPRN_HR, KC_PIPE,                      KC_TILD,  EQL_HR, MINS_HR, PLUS_HR, GRVE_HR, KC_DQUO,
     _______, KC_QUES, XXXXXXX, KC_LBRC, KC_RBRC, KC_BSLS,                      XXXXXXX,KC_GRAVE, KC_LABK, KC_RABK, KC_UNDS, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                                                         ^^^^^^^
   ),
   [_NUM] = LAYOUT_split_3x6_3(
     _______, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_ASTR,    KC_7,    KC_8,    KC_9, KC_PLUS,   LLOCK,
-    _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_SPC,                         KC_0,    KC_4,    KC_5,    KC_6, KC_MINS, _______,
+    _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_SPC,                         KC_0,    KC_4,    KC_5,    KC_6, KC_MINS, KC_DQUO,
     _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT, XXXXXXX,                         KC_0,    KC_1,    KC_2,    KC_3, KC_SLSH, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                           ^^^^^^^                       ^^^^^^^
   ),
   [_NUM2] = LAYOUT_split_3x6_3(
     _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_5,    KC_6,    KC_7,    KC_8, _______,
-    _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_SPC,                         KC_0,    KC_1,    KC_2,    KC_3,    KC_4, _______,
+    _______, KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_SPC,                         KC_0,    KC_1,    KC_2,    KC_3,    KC_4, KC_DQUO,
     _______, KC_LALT, KC_LGUI, KC_LCTL,  KC_SPC, XXXXXXX,                         KC_0,    KC_9, KC_COMM,  KC_DOT, KC_UNDS, _______,
                                         _______, _______, _______,    _______, _______, _______
     //                                                    ^^^^^^^
