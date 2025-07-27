@@ -142,6 +142,17 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
     } \
     return true;
 
+
+// =============================================================================
+// FLOW TAP
+uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record, uint16_t prev_keycode) {
+  // https://docs.qmk.fm/tap_hold#flow-tap
+  if (keycode == SPC_NAV) {
+    return 0;  // Disable flow tap for space
+  }
+  return FLOW_TAP_TERM;
+}
+
 // =============================================================================
 // LAYOUT
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
